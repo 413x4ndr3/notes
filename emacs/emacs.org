@@ -1,0 +1,126 @@
+#+TITLE: GNU Emacs Manual - Notes
+
+* GNU Emacs Manual
+
+17th Edition - Emacs version 26.0.60
+
+
+** Preface
+
+- Documents the *use* and *simple customization* of the Emacs editor.
+(Simple customization do not require you to be a programmer)
+
+- Primarily a *reference manual*.
+(Can also be used as a *primer*)
+
+- The integrated learn-by-doing *tutorial* should be read *before* this manual.
+
+| Key   | Command          |
+|-------+------------------|
+| C-h t | Run the tutorial |
+
+- Chapters reading:
+
+|         Chapter | Description                                                                                                            |
+|-----------------+------------------------------------------------------------------------------------------------------------------------|
+|             1-2 | Manual *notational conventions* & *General appearance* of the Emacs display screen. (skim)                             |
+|               4 | *Practice* commands shown.                                                                                             |
+|              5+ | *Fundamental techniques and concepts* constantly used. (Need to be understood *thoroughly* so *practice until fluent*) |
+|           14-19 | *Intermediate-level features* useful for many kinds of editing.                                                        |
+|             20+ | *Optional features* (but useful). (Read when needed).                                                                  |
+| Common Problems | When Emacs is *not working* properly. (How to cope with several problems & reporting bugs)                             |
+|           Index | *Documentation of a particular command*. (Keys and commmand names have separated indexes).                             |
+|        Glossary | Brief *dictionary of common terms*. (with cross-references)                                                            |
+
+
+- Also available as *printed book* and *Info file*
+(Info file can be read within Emacs or with info program)
+(All manuals contain the *same content* inpendently from their format since they are generated from the *same source files* (also distributed with Emacs))
+
+_Info is the principal format for documentation in the GNU system_
+
+_GNU Emacs is a member of the Emacs editor family_
+(There many Emacs editor, all sharing common principles of organization)
+
+- Information on the underlying philosophy of Emacs and lessons learned from its development:
+[[http://hdl.handle.net/1721.1/5736][Emacs, the Extensible, Customizable Self-Documenting Display Editor]]
+
+- This manual is mainly intended for use with *GNU and Unix systems*.
+(Emacs can also be used on MS-DOS, Microsoft Windows and Macintosh systems)
+(The Info file version of this manual contains more information about using Emacs on those systems)
+(Those systems use different file name syntax)
+(MS-DOS does not support all GNU Emacs features)
+(See dedicated Appendices)
+
+
+** Distribution
+
+_GNU Emacs is free software_
+- Everyone is *free to use it* and *free to redistribute it* under certain conditions.
+(*Not in the public domain*: copyrighted and there are restrictions on its distribution)
+(Restrictions designed to *permit everything that a good cooperating citizen would do*)
+(What is not allowed is to *try to prevent others form further sharing* any version of GNU Emacs)
+
+- More precisions are found in the *GNU General Public License* included with Emacs.
+(This manual is covered by the *GNU Free Documentation License*)
+(Similar to the GPL, but more suitable for documentation)
+
+_Getting a copy of GNU Emacs:_
+- From someone else who has it (no permission needed, *just copy it*). (E.g., anonymous FTP)
+- When you buy a computer (manufacturers are under the same terms that apply to everyone else).
+(They are required to give you the *full sources*, including whatever changes they may have made, and permit you to redistribute it).
+
+*The program must be free for you when you get it, not just free for the manufacturer*
+
+[[https://www.gnu.org/software/emacs][More information on GNU Emacs]] (and info on getting it).
+
+- Donations are made to the *Free Software Fundation* and are *tax deductible* in the US.
+- Hardcopy versions of several GNU manual can also be bought on the [[https://shop.fsf.org][FSF online store]].
+
+The income from sales serves the main foundation's purpose:
+*the development of new free software, and improvements to existing programs*.
+
+Contact the FSF:
+- [[https://www.fsf.org/about/contact/][Contact page]]
+- Postal address:
+
+Free Software Foundation
+51 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA
+
+
+** Acknowledgements
+
+** Introduction
+
+_GNU Emacs, the GNU incarnation of the advanced, self-documenting, customizable, extensible editor Emacs_
+('G' in GNU's Not Unix is not silent)
+
+- *Advanced*
+  - Can do much more than simple *insertion* and *deletion* of text.
+    (E.g., control subprocesses, indent programs automatically, show multiple files at once)
+  - Editing commands operate in terms of *characters*, *words*, *lines*, *sentences*, *paragraphs*, and *pages*
+as well as expressions and comments in various programming languages.
+
+- *Self-documenting*
+  - You can use *help commands* at any time (= special commands) to find out:
+    - What your *options* are.
+    - What any *special command* does.
+    - *All the commands* that pertain a given topic.
+
+- *Customizable*
+  - *Altering the behavior* of Emacs commands is easy.
+    (E.g., you can tell Emacs comment manipulation commands to use any given strings for comments for a programming language)
+    (E.g., you can rebind the basic cursor motion commands to any keys on the keyboard that you find confortable)
+
+- *Extensible*
+  - Can go beyond *simple customization* and create entirely *new commands* (i.e., programs written in the *Lisp* language run by Emacs's own Lisp interpreter).
+  - Existing commands can even be *redefined in the middle of an editing session*, without having to restart Emacs.
+  - Writing an extension is *programming*, but non-programmers can use it afterwards.
+
+_Most Emacs commands are written in Lisp but some use C instead for efficiency_
+
+See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html][An Introduction to Programming in Emacs Lisp]] if you want to learn *Emacs Lisp* programming.
+
+
