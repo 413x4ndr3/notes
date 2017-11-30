@@ -124,3 +124,41 @@ _Most Emacs commands are written in Lisp but some use C instead for efficiency_
 See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html][An Introduction to Programming in Emacs Lisp]] if you want to learn *Emacs Lisp* programming.
 
 
+** The Organization of the Screen
+
+|                                    | Graphical display  | Text terminal          |
+|------------------------------------+--------------------+------------------------|
+| (A) /frame/ (i.e., place occupied) | A graphical window | Entire terminal screen |
+
+- Emacs starts with one frame, but additional frames can be created.
+
+- Frame regions:
+
+| Region name      | Emplacement                          | Description                                                                                                                                         | On graphical display? | On text terminal? |
+|------------------+--------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-------------------|
+| (A) /menu bar/   | Very top of the /frame/              | *Access commands* via series of menus                                                                                                               | Y                     | Y                 |
+| (A) /tool bar/   | Below the /menu bar/                 | A row of icons that *perform editing commands* when clicked                                                                                         | Y                     | N                 |
+| (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it                                                   | Y                     | Y                 |
+| (A) /window/     | Below the /tool bar/ (if one exists) | *Main area* of the frame + Where the *buffer* (i.e., the text you are editing) is displayed                                                         | Y                     | Y                 |
+| (A) /scroll bar/ | Very right of each /window/          | Can be used to *scroll through the displayed buffer*                                                                                                | Y                     | N                 |
+| (A) /mode line/  | *Last line* of the /window/          | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Y                     | Y                 |
+
+- Graphical display system commonly use the word "window" with a different meaning, but in Emacs they are refered as "frame".
+- Each region should be designated with "a" instead of "the" (i.e., each of them is not necesarily unique).
+
+- When Emacs is started, there is normally *one window in the frame*.
+- This window can be subdivided *horizontally* or *vertically*.
+(Each of which can *independently display a buffer* (even the same one))
+
+- At any time, *one window is the selected window*.
+  - On /graphical display/: shown with a *more prominent cursor* (usually solid and blinking); other windows show a less prominent cursor (usually a hollow box).
+  - On /text terminal/: there is *only one cursor*, which is shown in the selected window.
+
+- The buffer displayed in the selected window is called the *current buffer*: this is where editing happens.
+(*Most Emacs commands implicitly apply to the current buffer*)
+(The text displayed in *unselected windows* is mostly visible for referencez0
+
+- When using multiple frames (thus on a graphical display), *selecting a particular frame selects a window in that frame*.
+
+
+** TODO read back previous notes
