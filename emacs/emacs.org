@@ -17,19 +17,19 @@
 
 | Key   | Command          |
 |-------+------------------|
-| C-h t | Run the tutorial |
+| C-h t | Run the *tutorial* |
 
 - Chapters reading:
 
 |         Chapter | Description                                                                                                            |
 |-----------------+------------------------------------------------------------------------------------------------------------------------|
-|             1-2 | Manual *notational conventions* & *General appearance* of the Emacs display screen. (skim)                             |
+|             1-2 | Manual *notational conventions* & *general appearance* of the Emacs display screen. (skim)                             |
 |               4 | *Practice* commands shown.                                                                                             |
 |              5+ | *Fundamental techniques and concepts* constantly used. (Need to be understood *thoroughly* so *practice until fluent*) |
 |           14-19 | *Intermediate-level features* useful for many kinds of editing.                                                        |
-|             20+ | *Optional features* (but useful). (Read when needed).                                                                  |
+|             20+ | *Optional features* (but useful). (Read when needed)                                                                   |
 | Common Problems | When Emacs is *not working* properly. (How to cope with several problems & reporting bugs)                             |
-|           Index | *Documentation of a particular command*. (Keys and commmand names have separated indexes).                             |
+|           Index | *Documentation of a particular command*. (*Keys* and *commmand names* have separated indexes)                          |
 |        Glossary | Brief *dictionary of common terms*. (with cross-references)                                                            |
 
 
@@ -66,11 +66,11 @@ _GNU Emacs is free software_
 (Similar to the GPL, but more suitable for documentation)
 
 _Getting a copy of GNU Emacs:_
-- From someone else who has it (no permission needed, *just copy it*). (E.g., anonymous FTP)
-- When you buy a computer (manufacturers are under the same terms that apply to everyone else).
-(They are required to give you the *full sources*, including whatever changes they may have made, and permit you to redistribute it).
+- *From someone else who has it* (no permission needed, *just copy it*). (E.g., anonymous FTP)
+- *When you buy a computer* (manufacturers are under the same terms that apply to everyone else).
+(They are required to give you the *full sources*, including whatever *changes* they may have made, and permit you to *redistribute it*).
 
-*The program must be free for you when you get it, not just free for the manufacturer*
+_The program must be free for you when you get it, not just free for the manufacturer_
 
 [[https://www.gnu.org/software/emacs][More information on GNU Emacs]] (and info on getting it).
 
@@ -78,7 +78,7 @@ _Getting a copy of GNU Emacs:_
 - Hardcopy versions of several GNU manual can also be bought on the [[https://shop.fsf.org][FSF online store]].
 
 The income from sales serves the main foundation's purpose:
-*the development of new free software, and improvements to existing programs*.
+_the development of new free software, and improvements to existing programs_
 
 Contact the FSF:
 - [[https://www.fsf.org/about/contact/][Contact page]]
@@ -136,14 +136,14 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
 
 | Region name      | Emplacement                          | Description                                                                                                                                         | On graphical display? | On text terminal? |
 |------------------+--------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-------------------|
-| (A) /menu bar/   | Very top of the /frame/              | *Access commands* via series of menus                                                                                                               | Y                     | Y                 |
-| (A) /tool bar/   | Below the /menu bar/                 | A row of icons that *perform editing commands* when clicked                                                                                         | Y                     | N                 |
-| (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it                                                   | Y                     | Y                 |
-| (A) /window/     | Below the /tool bar/ (if one exists) | *Main area* of the frame + Where the *buffer* (i.e., the text you are editing) is displayed                                                         | Y                     | Y                 |
-| (A) /scroll bar/ | Very right of each /window/          | Can be used to *scroll through the displayed buffer*                                                                                                | Y                     | N                 |
-| (A) /mode line/  | *Last line* of the /window/          | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Y                     | Y                 |
+| (A) /menu bar/   | Very top of the /frame/              | *Access commands* via series of menus                                                                                                               | Yes                   | Yes               |
+| (A) /tool bar/   | Below the /menu bar/                 | A row of icons that *perform editing commands* when clicked                                                                                         | Yes                   | No                |
+| (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it                                                   | Yes                   | Yes               |
+| (A) /window/     | Below the /tool bar/ (if one exists) | *Main area* of the frame + Where the *buffer* (i.e., the text you are editing) is displayed                                                         | Yes                   | Yes               |
+| (A) /scroll bar/ | Very right of each /window/          | Can be used to *scroll through the displayed buffer*                                                                                                | Yes                   | No                |
+| (A) /mode line/  | *Last line* of the /window/          | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Yes                   | Yes               |
 
-- Graphical display system commonly use the word "window" with a different meaning, but in Emacs they are refered as "frame".
+- Graphical display system commonly use the word "window" with a *different meaning*, but in Emacs they are refered as "frame".
 - Each region should be designated with "a" instead of "the" (i.e., each of them is not necesarily unique).
 
 - When Emacs is started, there is normally *one window in the frame*.
@@ -154,11 +154,11 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
   - On /graphical display/: shown with a *more prominent cursor* (usually solid and blinking); other windows show a less prominent cursor (usually a hollow box).
   - On /text terminal/: there is *only one cursor*, which is shown in the selected window.
 
-- The buffer displayed in the selected window is called the *current buffer*: this is where editing happens.
-(*Most Emacs commands implicitly apply to the current buffer*)
-(The text displayed in *unselected windows* is mostly visible for referencez0
+- The buffer displayed in the selected window is called the *current buffer*: _this is where editing happens_.
 
-- When using multiple frames (thus on a graphical display), *selecting a particular frame selects a window in that frame*.
+_Most Emacs commands implicitly apply to the current buffer_
+(The text displayed in *unselected windows* is mostly visible for reference)
+
+- When using multiple frames (= when using a graphical display), _selecting a particular frame selects a window in that frame_.
 
 
-** TODO read back previous notes
