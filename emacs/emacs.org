@@ -141,7 +141,7 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
 | (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it                                                   | Yes                   | Yes               |
 | (A) /window/     | Below the /tool bar/ (if one exists) | *Main area* of the frame + Where the *buffer* (i.e., the text you are editing) is displayed                                                         | Yes                   | Yes               |
 | (A) /scroll bar/ | Very right of each /window/          | Can be used to *scroll through the displayed buffer*                                                                                                | Yes                   | No                |
-| (A) /mode line/  | *Last line* of the /window/          | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Yes                   | Yes               |
+| (A) /mode line/  | Last line of each /window/           | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Yes                   | Yes               |
 
 - Graphical display system commonly use the word "window" with a *different meaning*, but in Emacs they are refered as "frame".
 - Each region should be designated with "a" instead of "the" (i.e., each of them is not necesarily unique).
@@ -224,5 +224,80 @@ _The cursor remains over the same character before and after inserting character
 - When the minibuffer is in use, the text of the echo area begins with a /prompt string/ and it *becomes temporarily the selected window* (\implies the cursor appears within the minibuffer).
 
 \rightarrow You can always get out of the minibuffer by typing =C-g=
+
+
+** The Mode Line
+
+- _Describe what is going on in the current buffer_
+(When only one window: *next-to-last line* in the frame; right above the echo area)
+(On a graphical display, the mode line is drawn with a 3D box appearance)
+- The mode line of the selected window is usually drawn with a different color than that of the unselected windows \rightarrow Make the selected window stand out
+
+
+_Format of the text displayed in the mode line:_
+
+#+BEGIN_EXAMPLE
+cs:ch-fr  buf      pos line   (major minor)
+#+END_EXAMPLE
+
+(_On text terminal only:_ there is a *series of dashes* after this text extending to the right edge of the window)
+
+
+- =cs:= describe the *character set* and *newline convention* used for the *current buffer*.
+  - (Normally, Emacs *automatically handles these settings* \right arrow But it is sometimes useful to have this information)
+
+  - if =-=: *no special character set* handling (with the possible exception of end-of-line conventions)
+  - if ===: *no conversion* whatsoever \rightarrow usually for files with non-textual data
+  - Other characters represents various /coding systems/ (e.g., '1' represents ISO Latin-1, 'U' represents UTF-8)
+
+  - (_On text terminal only:_ cs is preceded by two additional characters: *coding systems* for *keyboard input* and *terminal output*)
+  - (+ another character if using an /input method/ (IME))
+
+- If the character after =cs= \neq =:= \rightarrow *nontrivial end-of-line convention* for encoding a file.
+  - Usually, lines of text are separated by /newline characters/ in a file \rightarrow Represented by =:= (or =(Unix)= on some systems)
+  - But 2 other conventions are sometimes used:
+    - MS-DOS, =\= (or =(DOS)= depending on the OS): *carriage-return character* + *linefeed character*
+    - =/= (or =(Mac)= depending on the OS): *carriage-return character* \rightarrow Employed by older Macintosh systems only
+
+- On frames created for =emacsclients=, the next character is =@= \rightarrow Typical for frames of an Emacs process running as a /daemon/.
+
+- =ch= indicates *changes* of the displayed buffer:
+  - =--=: the buffer is *unmodified* \rightarrow I.e., the displayed buffer has the same contents as the corresponding file on the disk
+  - =**=: the buffer is *modified*
+
+  - =%%=: *read-only* buffer *unmodified*
+  - =%*=: *read-only* buffer *modified*
+
+- The next character is normally =-=; except if the *default-directory* for the current buffer is on a remote machine: =@=
+
+- (_On text terminal only:_ =fr= is the *selected frame name*)
+  - (The inital frame's name is =F1=)
+
+- =buf= is the *name of the buffer* displayed in the window \rightarrow Usually it is the same as the name of file on disk.
+
+- =pos= tells you if there is additional text *above the top of the window* or *below the bottom*:
+  - =All=: indicates that *all of the buffer is visible* \rightarrow The buffer is small.
+  - =Top=: indicates that you are looking at the *beginning of the buffer*.
+  - =Bot=: indicates that you are looking at the *end of the buffer*.
+  - =nn%=: where =nn= is the *percentage of the buffer above the top of the window*.
+  - (With *Size Indication mode*, you can display the size of the buffer as well)
+
+- =line= is the character =L= followed by the *line number at point*
+  - (With *Column Number mode* you can display the current column number as well)
+
+- =major= is the name of the /major mode/ used in the buffer \rightarrow I.e., a *principal editing* mode for the buffer (e.g., Text mode, Lisp mode, C mode).
+  - (*Additional information* can be displayed after the major mode name (e.g., Compilation buffers and Shell buffers display the *status of the subprocess*).
+
+- =minor= is a list of some of the enabled /minor modes/ used in the buffer \rightarrow I.e., optional editing modes that provide *additional features* on top of the major mode.
+  - (Some features are listed with the minor modes whenever they are turned on, even though *they are not really minor modes*)
+  - (E.g., =Narrow= means that the displayed buffer has *editing restricted to only a portion of its text*, =Def= means that a *keyboard macro is being defined*)
+
+- If Emacs is inside a *recursive editing level*, =[...]= (square brackets) appear around the =(...)= (parentheses) that surround the modes.
+  - (If Emacs is one recursive editing level within another: *double square brackets* (and so on))
+  - (Such square brackets appear in the *mode line of every window* since recursive editing levels affect Emacs globally)
+
+
+- The *appearance of the mode line* and the *format of its content* can be customized.
+  - (In addition, the mode line is *mouse-sensitive*: clicking on different parts of it performs various commands)
 
 
