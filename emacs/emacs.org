@@ -15,9 +15,9 @@ GNU Emacs Manual
 
 - The integrated learn-by-doing *tutorial* should be read *before* this manual.
 
-| Key   | Command            |
-|-------+--------------------|
-| C-h t | Run the *tutorial* |
+| Key     | Command            |
+|---------+--------------------|
+| =C-h t= | Run the *tutorial* |
 
 - Chapters reading:
 
@@ -91,6 +91,7 @@ USA
 
 
 * Acknowledgements
+
 
 * Introduction
 
@@ -206,9 +207,10 @@ _The cursor remains over the same character before and after inserting character
 - Some commands display /informative messages/ in the echo area \rightarrow Telling you what the command has done or to provide you with specific information.
 - (No beep or flash)
 
-| Key   | Command                                                                                             |
-|-------+-----------------------------------------------------------------------------------------------------|
-| C-x = | *Describe character at point*, its *position in the buffer* and its *current column in the window*. |
+| Key   | Command                                                                                            |
+|-------+----------------------------------------------------------------------------------------------------|
+| =C-x == | *Describe character at point*, its *position in the buffer* and its *current column in the window* |
+
 
 - E.g., =C-x == displays it output in the echo area.
 
@@ -299,5 +301,34 @@ cs:ch-fr  buf      pos line   (major minor)
 
 - The *appearance of the mode line* and the *format of its content* can be customized.
   - (In addition, the mode line is *mouse-sensitive*: clicking on different parts of it performs various commands)
+
+
+
+** The Menu Bar
+
+- Normally at the top of each /frame/.
+- Can be used to *perform common operations*.
+  - (If using Emacs in a *graphical window*, you can use the mouse to choose a command).
+  - (An *arrow on the right edge of a menu item* means it leads to a *subsidiary menu* (or a /submenu/))
+  - (A =...= *at the end of of a menu item* means that the command will *prompt you*)
+  - (Some commands in it have *ordinary key bindings* as well \rightarrow Indicated on the right edge of the menu item)
+
+
+| Key     | Command         | Description                                                                                                                                                                     |
+|---------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| =C-h k= |                 | /Can be used to/ view the *full command name* and *documentation* of a menu item (Click on the menu item when prompted)                                                         |
+| =F10=   | =menu-bar-open= | Invoke the *first menu bar item* \rightarrow Navigate with the *arrow keys* thereafter, =RET= to activate selected menu item, =C-g= or =ESC ESC ESC= to cancel menu navigation. |
+
+- (Since Emacs is built with a *GUI toolkit*, the menus are drawn and controlled by the toolkit and the *keys sequences to cancel menu navigation may differ*)
+  - (E.g., a single =ESC= is sufficient in a graphical window frame)
+
+
+| =M-`=   | =tmm-menubar=   | Access the *menu bar in the echo area* and *select a menu item with the keyboard*.                                                                                              |
+
+- (A buffer named =*Completions*= up opens and shows the *possible inputs to enter* in the minibuffer)
+- (A *provisional choice* is displayed in the echo area)
+- (Use *up or down arrow keys +* =RET= or *type the character* before the ====>= to *select a menu item*)
+- (=tmm-menu= menu items are *mouse-sensitive*)
+- (Set =tty-menu-open-use-tmm= to a non-nil value and =F10= *will run the command* =tmm-menu-bar= *instead of dropping down the menu*)
 
 
