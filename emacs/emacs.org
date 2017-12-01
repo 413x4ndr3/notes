@@ -15,8 +15,8 @@ GNU Emacs Manual
 
 - The integrated learn-by-doing *tutorial* should be read *before* this manual.
 
-| Key   | Command          |
-|-------+------------------|
+| Key   | Command            |
+|-------+--------------------|
 | C-h t | Run the *tutorial* |
 
 - Chapters reading:
@@ -191,5 +191,38 @@ _The cursor remains over the same character before and after inserting character
 - _A buffer that is not currently displayed remembers its value of point if you later display it again_
 - _If a same buffer is displayed in multiple windows, each of thos windows has its own value of point_
 
-(See Section 11.20)
+
+** The Echo Area
+
+- _The echo area is so-named because one of its use is for echoing_ (i.e., displaying the characters of a *multi-character command* as you type)
+  - _Single-character commands are not echoed_
+  - _Characters typed so far for a multi-character command echoed if pause > 1 sec_ (to prompts you for the rest)
+  - _Once echoing has started, the rest of the command echoes *immediately* as you type_ \rightarrow Behavior designed to give *confident users fast reponses* and *hesitant users maximum feedback*
+
+- Echo area also displays /error messages/ when a command cannot do its job.
+(Error messages may be accompanied by beeping or flashing the screen)
+
+
+- Some commands display /informative messages/ in the echo area \rightarrow Telling you what the command has done or to provide you with specific information.
+- (No beep or flash)
+
+| Key   | Command                                                                                             |
+|-------+-----------------------------------------------------------------------------------------------------|
+| C-x = | *Describe character at point*, its *position in the buffer* and its *current column in the window*. |
+
+- E.g., =C-x == displays it output in the echo area.
+
+- Commands that take a long time often display *messages ending in '...'* while they are working \rightarrow Display 'done' when they are finished.
+(+ how much progress sometimes (as a percentage))
+
+- *Informative echo area messages* are saved in a special buffer named =*Message*= \rightarrow Useful to see a *missed message* or simply *message history*
+(=*Message*= buffer is limited to a certain number of lines specified by the =message-log-max= variable)
+(The oldest line is deleted whenever a new line is added at the end)
+
+
+- The echo area is also used to display the /minibuffer/ \rightarrow I.e., a special window where you can input arguments to commands (e.g., the name of a file to be edited))
+- When the minibuffer is in use, the text of the echo area begins with a /prompt string/ and it *becomes temporarily the selected window* (\implies the cursor appears within the minibuffer).
+
+\rightarrow You can always get out of the minibuffer by typing =C-g=
+
 

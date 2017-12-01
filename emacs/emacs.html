@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>GNU Emacs Manual - Notes</title>
-<!-- 2017-12-01 Fri 09:59 -->
+<!-- 2017-12-01 Fri 11:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <style type="text/css">
@@ -133,6 +133,48 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 <div id="content">
@@ -148,6 +190,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5">5. The Organization of the Screen</a>
 <ul>
 <li><a href="#sec-5-1">5.1. Point</a></li>
+<li><a href="#sec-5-2">5.2. The Echo Area</a></li>
 </ul>
 </li>
 </ul>
@@ -601,7 +644,7 @@ See Section "Preface" in <a href="https://www.gnu.org/software/emacs/manual/eint
 </ul>
 </li>
 
-<li>The buffer displayed in the selected window is called the <b>current buffer</b>: <span class="underline">this is where editing happens</span>.
+<li>The buffer displayed in the selected window is called the <b>current buffer</b> &rarr; <span class="underline">this is where editing happens</span>.
 </li>
 </ul>
 
@@ -611,7 +654,7 @@ See Section "Preface" in <a href="https://www.gnu.org/software/emacs/manual/eint
 </p>
 
 <ul class="org-ul">
-<li>When using multiple frames (= when using a graphical display), <span class="underline">selecting a particular frame selects a window in that frame</span>.
+<li>When using multiple frames (\implies using a graphical display), <span class="underline">selecting a particular frame selects a window in that frame</span>.
 </li>
 </ul>
 </div>
@@ -620,16 +663,133 @@ See Section "Preface" in <a href="https://www.gnu.org/software/emacs/manual/eint
 <div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Point</h3>
 <div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li><span class="underline">Point: the location where most editing commands take place</span>
+</li>
+</ul>
 <p>
-<span class="underline">Point: the location where most editing commands take place</span>
-<b>Cursor &ne; Point</b>
+(The term "point" commes from the character '.', which was the command in <b>TECO</b> for accessing editing position)
+(TECO (Text Editor and Corrector) is the language in which the original Emacs was written in)
 </p>
+
+<p>
+<span class="underline">Cursor &ne; Point</span> &rarr; <span class="underline">The cursor shows where the point is</span>
+</p>
+
+<ul class="org-ul">
+<li>Many Emacs commands <b>move point to different places in the buffer</b>.
+</li>
+</ul>
+<p>
+(E.g., mouse button 1 (normally the left button) place point where the mouse cursor is)
+</p>
+
+<ul class="org-ul">
+<li>By default, the <b>cursor</b> is drawn as a <b>solid block</b> and appears to be <b>on a character</b> &rarr; but the <b>point</b> is in fact <b>between two characters</b>.
+</li>
+</ul>
+<p>
+(it is situated <i>before</i> the character under the cursor)
+</p>
+
+<pre class="example">
+f r [o] b
+   ^ ^
+   | cursor position
+point position
+</pre>
+
+<p>
+<span class="underline">The cursor remains over the same character before and after inserting characters</span>
+(whether it is a <b>normal character</b> or the <b>EOL</b>)
+</p>
+
+
+<ul class="org-ul">
+<li><span class="underline">Each buffer has its own value of point</span>
+</li>
+<li><span class="underline">A buffer that is not currently displayed remembers its value of point if you later display it again</span>
+</li>
+<li><span class="underline">If a same buffer is displayed in multiple windows, each of thos windows has its own value of point</span>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> The Echo Area</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li><span class="underline">The echo area is so-named because one of its use is for echoing</span> (i.e., displaying the characters of a <b>multi-character command</b> as you type)
+<ul class="org-ul">
+<li><span class="underline">Single-character commands are not echoed</span>
+</li>
+<li><span class="underline">Characters typed so far for a multi-character command echoed if pause &gt; 1 sec</span> (to prompts you for the rest)
+</li>
+<li><span class="underline">Once echoing has started, the rest of the command echoes <b>immediately</b> as you type</span> &rarr; Behavior designed to give <b>confident users fast reponses</b> and <b>hesitant users maximum feedback</b>
+</li>
+</ul>
+</li>
+
+<li>Echo area also displays <i>error messages</i> when a command cannot do its job.
+</li>
+</ul>
+<p>
+(Error messages may be accompanied by beeping or flashing the screen)
+</p>
+
+
+<ul class="org-ul">
+<li>Some commands display <i>informative messages</i> in the echo area &rarr; telling you what the command has done or to provide you with specific information.
+</li>
+<li>(No beep or flash)
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">C-x =</td>
+<td class="left"><b>Describe character at point</b>, its <b>position in the buffer</b> and its <b>current column in the window</b>.</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>E.g., <code>C-x =</code> displays it output in the echo area.
+</li>
+
+<li>Commands that take a long time often display *messages ending in '&#x2026;'* while they are working &rarr; Display 'done' when they are finished.
+</li>
+</ul>
+<p>
+(+ how much progress sometimes (as a percentage))
+</p>
+
+<ul class="org-ul">
+<li><b>Informative echo area messages</b> are saved in a special buffer named <code>*Message*</code>.
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2017-12-01 Fri 09:59</p>
+<p class="date">Created: 2017-12-01 Fri 11:09</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
