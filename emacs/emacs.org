@@ -1,11 +1,11 @@
 #+TITLE: GNU Emacs Manual - Notes
 
-* GNU Emacs Manual
+GNU Emacs Manual
 
 17th Edition - Emacs version 26.0.60
 
 
-** Preface
+* Preface
 
 - Documents the *use* and *simple customization* of the Emacs editor.
 (Simple customization do not require you to be a programmer)
@@ -53,7 +53,7 @@ _GNU Emacs is a member of the Emacs editor family_
 (See dedicated Appendices)
 
 
-** Distribution
+* Distribution
 
 _GNU Emacs is free software_
 - Everyone is *free to use it* and *free to redistribute it* under certain conditions.
@@ -90,9 +90,9 @@ Boston, MA 02110-1301
 USA
 
 
-** Acknowledgements
+* Acknowledgements
 
-** Introduction
+* Introduction
 
 _GNU Emacs, the GNU incarnation of the advanced, self-documenting, customizable, extensible editor Emacs_
 ('G' in GNU's Not Unix is not silent)
@@ -124,7 +124,7 @@ _Most Emacs commands are written in Lisp but some use C instead for efficiency_
 See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html][An Introduction to Programming in Emacs Lisp]] if you want to learn *Emacs Lisp* programming.
 
 
-** The Organization of the Screen
+* The Organization of the Screen
 
 |                                    | Graphical display  | Text terminal          |
 |------------------------------------+--------------------+------------------------|
@@ -154,11 +154,42 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
   - On /graphical display/: shown with a *more prominent cursor* (usually solid and blinking); other windows show a less prominent cursor (usually a hollow box).
   - On /text terminal/: there is *only one cursor*, which is shown in the selected window.
 
-- The buffer displayed in the selected window is called the *current buffer*: _this is where editing happens_.
+- The buffer displayed in the selected window is called the *current buffer* \rightarrow _this is where editing happens_.
 
 _Most Emacs commands implicitly apply to the current buffer_
 (The text displayed in *unselected windows* is mostly visible for reference)
 
-- When using multiple frames (= when using a graphical display), _selecting a particular frame selects a window in that frame_.
+- When using multiple frames (\implies using a graphical display), _selecting a particular frame selects a window in that frame_.
 
+
+** Point
+
+- _Point: the location where most editing commands take place_
+(The term "point" commes from the character '.', which was the command in *TECO* for accessing editing position)
+(TECO (Text Editor and Corrector) is the language in which the original Emacs was written in)
+
+_Cursor \neq Point_ \rightarrow _The cursor shows where the point is_
+
+- Many Emacs commands *move point to different places in the buffer*.
+(E.g., mouse button 1 (normally the left button) place point where the mouse cursor is)
+
+- By default, the *cursor* is drawn as a *solid block* and appears to be *on a character* \rightarrow but the *point* is in fact *between two characters*.
+(it is situated /before/ the character under the cursor)
+
+#+BEGIN_EXAMPLE
+f r [o] b
+   ^ ^
+   | cursor position
+point position
+#+END_EXAMPLE
+
+_The cursor remains over the same character before and after inserting characters_
+(whether it is a *normal character* or the *EOL*)
+
+
+- _Each buffer has its own value of point_
+- _A buffer that is not currently displayed remembers its value of point if you later display it again_
+- _If a same buffer is displayed in multiple windows, each of thos windows has its own value of point_
+
+(See Section 11.20)
 

@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>GNU Emacs Manual - Notes</title>
+<!-- 2017-12-01 Fri 09:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">GNU Emacs Manual - Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Preface</a></li>
+<li><a href="#sec-2">2. Distribution</a></li>
+<li><a href="#sec-3">3. Acknowledgements</a></li>
+<li><a href="#sec-4">4. Introduction</a></li>
+<li><a href="#sec-5">5. The Organization of the Screen</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Point</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+GNU Emacs Manual
+</p>
+
+<p>
+17th Edition - Emacs version 26.0.60
+</p>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Preface</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Documents the <b>use</b> and <b>simple customization</b> of the Emacs editor.
+</li>
+</ul>
+<p>
+(Simple customization do not require you to be a programmer)
+</p>
+
+<ul class="org-ul">
+<li>Primarily a <b>reference manual</b>.
+</li>
+</ul>
+<p>
+(Can also be used as a <b>primer</b>)
+</p>
+
+<ul class="org-ul">
+<li>The integrated learn-by-doing <b>tutorial</b> should be read <b>before</b> this manual.
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">C-h t</td>
+<td class="left">Run the <b>tutorial</b></td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Chapters reading:
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Chapter</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">1-2</td>
+<td class="left">Manual <b>notational conventions</b> &amp; <b>general appearance</b> of the Emacs display screen. (skim)</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="left"><b>Practice</b> commands shown.</td>
+</tr>
+
+<tr>
+<td class="right">5+</td>
+<td class="left"><b>Fundamental techniques and concepts</b> constantly used. (Need to be understood <b>thoroughly</b> so <b>practice until fluent</b>)</td>
+</tr>
+
+<tr>
+<td class="right">14-19</td>
+<td class="left"><b>Intermediate-level features</b> useful for many kinds of editing.</td>
+</tr>
+
+<tr>
+<td class="right">20+</td>
+<td class="left"><b>Optional features</b> (but useful). (Read when needed)</td>
+</tr>
+
+<tr>
+<td class="right">Common Problems</td>
+<td class="left">When Emacs is <b>not working</b> properly. (How to cope with several problems &amp; reporting bugs)</td>
+</tr>
+
+<tr>
+<td class="right">Index</td>
+<td class="left"><b>Documentation of a particular command</b>. (<b>Keys</b> and <b>commmand names</b> have separated indexes)</td>
+</tr>
+
+<tr>
+<td class="right">Glossary</td>
+<td class="left">Brief <b>dictionary of common terms</b>. (with cross-references)</td>
+</tr>
+</tbody>
+</table>
+
+
+<ul class="org-ul">
+<li>Also available as <b>printed book</b> and <b>Info file</b>
+</li>
+</ul>
+<p>
+(Info file can be read within Emacs or with info program)
+(All manuals contain the <b>same content</b> inpendently from their format since they are generated from the <b>same source files</b> (also distributed with Emacs))
+</p>
+
+<p>
+<span class="underline">Info is the principal format for documentation in the GNU system</span>
+</p>
+
+<p>
+<span class="underline">GNU Emacs is a member of the Emacs editor family</span>
+(There many Emacs editor, all sharing common principles of organization)
+</p>
+
+<ul class="org-ul">
+<li>Information on the underlying philosophy of Emacs and lessons learned from its development:
+</li>
+</ul>
+<p>
+<a href="http://hdl.handle.net/1721.1/5736">Emacs, the Extensible, Customizable Self-Documenting Display Editor</a>
+</p>
+
+<ul class="org-ul">
+<li>This manual is mainly intended for use with <b>GNU and Unix systems</b>.
+</li>
+</ul>
+<p>
+(Emacs can also be used on MS-DOS, Microsoft Windows and Macintosh systems)
+(The Info file version of this manual contains more information about using Emacs on those systems)
+(Those systems use different file name syntax)
+(MS-DOS does not support all GNU Emacs features)
+(See dedicated Appendices)
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Distribution</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<span class="underline">GNU Emacs is free software</span>
+</p>
+<ul class="org-ul">
+<li>Everyone is <b>free to use it</b> and <b>free to redistribute it</b> under certain conditions.
+</li>
+</ul>
+<p>
+(<b>Not in the public domain</b>: copyrighted and there are restrictions on its distribution)
+(Restrictions designed to <b>permit everything that a good cooperating citizen would do</b>)
+(What is not allowed is to <b>try to prevent others form further sharing</b> any version of GNU Emacs)
+</p>
+
+<ul class="org-ul">
+<li>More precisions are found in the <b>GNU General Public License</b> included with Emacs.
+</li>
+</ul>
+<p>
+(This manual is covered by the <b>GNU Free Documentation License</b>)
+(Similar to the GPL, but more suitable for documentation)
+</p>
+
+<p>
+<span class="underline">Getting a copy of GNU Emacs:</span>
+</p>
+<ul class="org-ul">
+<li><b>From someone else who has it</b> (no permission needed, <b>just copy it</b>). (E.g., anonymous FTP)
+</li>
+<li><b>When you buy a computer</b> (manufacturers are under the same terms that apply to everyone else).
+</li>
+</ul>
+<p>
+(They are required to give you the <b>full sources</b>, including whatever <b>changes</b> they may have made, and permit you to <b>redistribute it</b>).
+</p>
+
+<p>
+<span class="underline">The program must be free for you when you get it, not just free for the manufacturer</span>
+</p>
+
+<p>
+<a href="https://www.gnu.org/software/emacs">More information on GNU Emacs</a> (and info on getting it).
+</p>
+
+<ul class="org-ul">
+<li>Donations are made to the <b>Free Software Fundation</b> and are <b>tax deductible</b> in the US.
+</li>
+<li>Hardcopy versions of several GNU manual can also be bought on the <a href="https://shop.fsf.org">FSF online store</a>.
+</li>
+</ul>
+
+<p>
+The income from sales serves the main foundation's purpose:
+<span class="underline">the development of new free software, and improvements to existing programs</span>
+</p>
+
+<p>
+Contact the FSF:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.fsf.org/about/contact/">Contact page</a>
+</li>
+<li>Postal address:
+</li>
+</ul>
+
+<p>
+Free Software Foundation
+51 Franklin Street, Fifth Floor
+Boston, MA 02110-1301
+USA
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Acknowledgements</h2>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Introduction</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<span class="underline">GNU Emacs, the GNU incarnation of the advanced, self-documenting, customizable, extensible editor Emacs</span>
+('G' in GNU's Not Unix is not silent)
+</p>
+
+<ul class="org-ul">
+<li><b>Advanced</b>
+<ul class="org-ul">
+<li>Can do much more than simple <b>insertion</b> and <b>deletion</b> of text.
+(E.g., control subprocesses, indent programs automatically, show multiple files at once)
+</li>
+<li>Editing commands operate in terms of <b>characters</b>, <b>words</b>, <b>lines</b>, <b>sentences</b>, <b>paragraphs</b>, and <b>pages</b>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+as well as expressions and comments in various programming languages.
+</p>
+
+<ul class="org-ul">
+<li><b>Self-documenting</b>
+<ul class="org-ul">
+<li>You can use <b>help commands</b> at any time (= special commands) to find out:
+<ul class="org-ul">
+<li>What your <b>options</b> are.
+</li>
+<li>What any <b>special command</b> does.
+</li>
+<li><b>All the commands</b> that pertain a given topic.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li><b>Customizable</b>
+<ul class="org-ul">
+<li><b>Altering the behavior</b> of Emacs commands is easy.
+(E.g., you can tell Emacs comment manipulation commands to use any given strings for comments for a programming language)
+(E.g., you can rebind the basic cursor motion commands to any keys on the keyboard that you find confortable)
+</li>
+</ul>
+</li>
+
+<li><b>Extensible</b>
+<ul class="org-ul">
+<li>Can go beyond <b>simple customization</b> and create entirely <b>new commands</b> (i.e., programs written in the <b>Lisp</b> language run by Emacs's own Lisp interpreter).
+</li>
+<li>Existing commands can even be <b>redefined in the middle of an editing session</b>, without having to restart Emacs.
+</li>
+<li>Writing an extension is <b>programming</b>, but non-programmers can use it afterwards.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<span class="underline">Most Emacs commands are written in Lisp but some use C instead for efficiency</span>
+</p>
+
+<p>
+See Section "Preface" in <a href="https://www.gnu.org/software/emacs/manual/eintr.html">An Introduction to Programming in Emacs Lisp</a> if you want to learn <b>Emacs Lisp</b> programming.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> The Organization of the Screen</h2>
+<div class="outline-text-2" id="text-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">Graphical display</th>
+<th scope="col" class="left">Text terminal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">(A) <i>frame</i> (i.e., place occupied)</td>
+<td class="left">A graphical window</td>
+<td class="left">Entire terminal screen</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Emacs starts with one frame, but additional frames can be created.
+</li>
+
+<li>Frame regions:
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Region name</th>
+<th scope="col" class="left">Emplacement</th>
+<th scope="col" class="left">Description</th>
+<th scope="col" class="left">On graphical display?</th>
+<th scope="col" class="left">On text terminal?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">(A) <i>menu bar</i></td>
+<td class="left">Very top of the <i>frame</i></td>
+<td class="left"><b>Access commands</b> via series of menus</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">(A) <i>tool bar</i></td>
+<td class="left">Below the <i>menu bar</i></td>
+<td class="left">A row of icons that <b>perform editing commands</b> when clicked</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">(An) <i>echo area</i></td>
+<td class="left">Very bottom of the <i>frame</i></td>
+<td class="left">Where <b>informative messages</b> are displayed + Where you <b>enter information</b> when Emacs asks for it</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">(A) <i>window</i></td>
+<td class="left">Below the <i>tool bar</i> (if one exists)</td>
+<td class="left"><b>Main area</b> of the frame + Where the <b>buffer</b> (i.e., the text you are editing) is displayed</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">(A) <i>scroll bar</i></td>
+<td class="left">Very right of each <i>window</i></td>
+<td class="left">Can be used to <b>scroll through the displayed buffer</b></td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">(A) <i>mode line</i></td>
+<td class="left"><b>Last line</b> of the <i>window</i></td>
+<td class="left"><b>Displays various information</b> about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number)</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Graphical display system commonly use the word "window" with a <b>different meaning</b>, but in Emacs they are refered as "frame".
+</li>
+<li>Each region should be designated with "a" instead of "the" (i.e., each of them is not necesarily unique).
+</li>
+
+<li>When Emacs is started, there is normally <b>one window in the frame</b>.
+</li>
+<li>This window can be subdivided <b>horizontally</b> or <b>vertically</b>.
+</li>
+</ul>
+<p>
+(Each of which can <b>independently display a buffer</b> (even the same one))
+</p>
+
+<ul class="org-ul">
+<li>At any time, <b>one window is the selected window</b>.
+<ul class="org-ul">
+<li>On <i>graphical display</i>: shown with a <b>more prominent cursor</b> (usually solid and blinking); other windows show a less prominent cursor (usually a hollow box).
+</li>
+<li>On <i>text terminal</i>: there is <b>only one cursor</b>, which is shown in the selected window.
+</li>
+</ul>
+</li>
+
+<li>The buffer displayed in the selected window is called the <b>current buffer</b>: <span class="underline">this is where editing happens</span>.
+</li>
+</ul>
+
+<p>
+<span class="underline">Most Emacs commands implicitly apply to the current buffer</span>
+(The text displayed in <b>unselected windows</b> is mostly visible for reference)
+</p>
+
+<ul class="org-ul">
+<li>When using multiple frames (= when using a graphical display), <span class="underline">selecting a particular frame selects a window in that frame</span>.
+</li>
+</ul>
+</div>
+
+
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Point</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<span class="underline">Point: the location where most editing commands take place</span>
+<b>Cursor &ne; Point</b>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-12-01 Fri 09:59</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
