@@ -444,6 +444,41 @@ cs:ch-fr  buf      pos line   (major minor)
 
 
 
+* Entering and Exiting Emacs
+
+** Entering Emacs
+
+- *Classic:* =$ emacs=
+
+- *In the background:* =$ emacs&;= \rightarrow Useful if runned from a terminal in a graphical window (since it won't tie up to the terminal window)
+
+- *Visit one or more files (as soon as starting up):* =$ emacs foo.txt
+  - _This feature exists mainly for compatibility with other editors (which are often dedigned to be launched from the shell for short editing sessions)_
+    - (Compatility needed with for the shell default text editor to be launched by default)
+
+  - The initial frame will be split into 2 windows: one displaying the *first file of the list* and the other displaying the *startup screen*.
+
+  - _Generally, it is unnecessary and wasteful to start Emacs afresh each time you want to edit a file_
+    - \rightarrow _Recommanded: start it just once (just after you log in) and do all your editing in the same session_
+    - This way, the Emacs session *accumulates valuable context* \rightarrow E.g., kill ring, registers, undo history, mark ring data
 
 
+- When Emacs starts up, the *initial frame* displays a special buffer named =*GNU Emacs*=
+  - (This /startup screen/ contains useful information and links to commons tasks for beginning users)
+
+  - A link can be followed:
+    - By placing the point on it + =RET=
+    - By pressing =mouse-1= on it
+
+  - (If the variable =inhibit-startup-screen= is non-=nil=, Emacs does *not display this startup screen*)
+    - (A buffer named *scratch* is displayed if no file was passed as argument \rightarrow Can be used to *evaluate Emacs Lisp expressions interactively* (See Section Lisp Interaction)
+    - (Can be set in *your init file* (or using the Customize facility) \rightarrow See dedicated sections)
+  
+  - (The variable =initial-buffer-choice= can be set to string naming a file or a directory)
+    - (Can also be set to a function (of no argument) that should return a buffer)
+    - (If set to non-=nil=, file names passed as argument will be visited but not displayed)
+
+- To edit a file *from another program while Emacs is running*, use the =emacsclient= helper to open a file in the existing session
+
+- (See Appendix C [Emacs Invocation] to see other available arguments)
 
