@@ -373,3 +373,48 @@ cs:ch-fr  buf      pos line   (major minor)
   - (See section "Input events" in Elisp Ref Manual to learn how Emacs interally handles input events)
 
 
+** Keys
+
+- _Key sequence: a sequence of one or more input events that is meaningful as a unit_
+  - E.g., =C-f= invokes =forward-char=
+  - E.g., =C-x 4 C-f= invokes =find-file-other-window=
+
+- !!! _Key is the abbreviation of Key sequence_
+
+- _Every key sequence is either a complete key or a prefix key_
+  - If a key sequence invokes a command, it is called a *complete key* \rightarrow E.g., =C-x C-f=, =C-x 4 C-f=
+    - (Once complete, a key cannot receive more input events \rightarrow E.g., =C-f C-k= is a two key sequence, not one
+
+  - If a key sequence is not long enough to invoke a command, it is called a *prefix key* \rightarrow E.g., =C-x=, =C-x 4=
+    - (A prefix key combines with the following input event to make a longer key sequence (\implies either complete or still prefix))
+
+  - (If a key sequence fails, it is called an *invalid key [sequence]*)
+
+
+- _A key sequence that take n input events to be complete is called a n-event key sequence_
+
+- (Number of events in a key sequence is not limited but it seldom reaches more than 3-4 inputs)
+
+
+- Prefix keys in Emacs by default:
+
+| =C-c=                   |
+| =C-h=                   |
+| =C-x=                   |
+| =RET=                   |
+| =C-x {@,a,n,r,v,4,5,6}= |
+| =ESC=                   |
+| =M-g=                   |
+| =M-o=                   |
+
+- (=F1= is an alias of =C-h= AND =F2= is an alias of =C-x 6=)
+- (List not cast in stone: can be customized to *add new prefix keys* but *avoid to remove one of them* (since it can break existing complete keys))
+
+
+| Key                | Description                                  |
+|--------------------+----------------------------------------------|
+| prefix key + =C-h= | List the commands starting with /prefix key/ |
+
+- (_Exception_: prefix key cannot be =ESC= since =ESC C-h= \logeq =C-M-h= (which invokes =mark-defun=))
+  - (Use the aliased =F1= key instead \rightarrow =ESC F1=)
+
