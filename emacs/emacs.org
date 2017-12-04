@@ -471,7 +471,7 @@ cs:ch-fr  buf      pos line   (major minor)
     - By pressing =mouse-1= on it
 
   - (If the variable =inhibit-startup-screen= is non-=nil=, Emacs does *not display this startup screen*)
-    - (A buffer named *scratch* is displayed if no file was passed as argument \rightarrow Can be used to *evaluate Emacs Lisp expressions interactively* (See Section Lisp Interaction)
+    - (A buffer named =*scratch*= is displayed if no file was passed as argument \rightarrow Can be used to *evaluate Emacs Lisp expressions interactively* (See Section Lisp Interaction)
     - (Can be set in *your init file* (or using the Customize facility) \rightarrow See dedicated sections)
   
   - (The variable =initial-buffer-choice= can be set to string naming a file or a directory)
@@ -481,4 +481,48 @@ cs:ch-fr  buf      pos line   (major minor)
 - To edit a file *from another program while Emacs is running*, use the =emacsclient= helper to open a file in the existing session
 
 - (See Appendix C [Emacs Invocation] to see other available arguments)
+
+
+** Exiting Emacs
+
+
+| Key       | Command                      | Description                                                                              |
+|-----------+------------------------------+------------------------------------------------------------------------------------------|
+| =C-x C-c= | =save-buffers-kill-terminal= | /Kill/ Emacs (= Terminate the Emacs program) with confirmations                          |
+| -         | =kill-emacs=                 | Kill Emacs without confirmation                                                          |
+| =C-z=     | =suspend-frame=              | _Text terminal:_ suspend Emacs; _Graphical display:_ iconify/minimize the selected frame |
+
+
+- (Multiple-character key sequences are often bound to commands that one *would not want to type by accident*)
+
+- A buffer that corresponds to a file on disk can be qualified as /file-visiting/.
+
+
+- _=save-buffers-kill-terminal=:_
+  - If there are any *modified file-visting buffer*, =save-buffers-kill-terminal= offers you to save these buffers
+    - It asks for confirmation again if you *do not save any*
+    - It also asks for confirmation if *subprocesses are still running* (since Emacs is the parent process)
+
+  - =save-buffers-kill-terminal= behaves specially if using Emacs as a *server* \rightarrow It closes connection if you type it from a client
+
+  - Optionally, Emacs can record *certain session information* when you kill it for later sessions \rightarrow E.g., files you were visiting
+    - _Variables:_
+      - (If the value of  =confirm-kill-emacs= is set to non-=nil= (default value is =nil=), =save-buffers-kill-terminal= assumes that its value is a *predicate function* and calls it)
+	- (If it returns a non-=nil=, the session is killed; otherwise Emacs continues to run)
+	- (=yes-or-no-p= is one convenient function to use)
+      - (If the value of =confirm-kill-processes= is set to =nil= (default value: =t=), =save-buffers-kill-terminal= does not ask for confimation when killing subprocesses)
+
+  - (See Section "Killing Emacs" in the Elisp Ref Manual)
+
+
+- _=suspend-frame=:_
+  - _On graphical display:_  hides the frame in a way that let you *bring it back later*
+    - (Exactly how this hiding occurs depends on the window system)
+  - _On text terminal:_ /suspends/ Emacs; stoppping the program temporarily and returning control to the parent process (a shell most of the time)
+    - =$ emacs%= to resume (in most shells)
+
+  - Text terminals usually *listen for certain special characters whose meaning is to send signals* to the program you are running \rightarrow E.g., =^C=, =^Z^
+    - _This terminal feature is turned off while you are in Emacs_
+    - =C-x C-c= and =C-z= keys are inspired by the use of similar combinations on several OS but *that is their only relationship with the OS*
+
 
