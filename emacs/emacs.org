@@ -361,6 +361,7 @@ cs:ch-fr  buf      pos line   (major minor)
 - + *control characters entered using modifier keys* are also recognized \rightarrow E.g., =Control= and =META=
   - E.g. =Control-a= or =C-a=, =META-a= or =M-a=
   - (Modifier keys can also be applied to non-alphanumerical characters \rightarrow E.g., =C-F1=, =M-Left=)
+  - (=Alt= is referred as =META= for historical reasons)
 
 - (Meta characters can also be entered using *two-character sequences* starting with =ESC= \rightarrow E.g., =M-a= \logeq =ESC a=, =C-M-a= \logeq =ESC C-a= (since =C-M-a \logeq =M-C-a=)
   - (Only useful when the =META= key does not function reliably)
@@ -417,4 +418,32 @@ cs:ch-fr  buf      pos line   (major minor)
 
 - (_Exception_: prefix key cannot be =ESC= since =ESC C-h= \logeq =C-M-h= (which invokes =mark-defun=))
   - (Use the aliased =F1= key instead \rightarrow =ESC F1=)
+
+
+** Keys and Commands
+
+- !!! _Emacs assings meaning to named commands, and then gives keys to their meanings by binding them to commands_
+  - \rightarrow Emacs does not assign meanings to keys directly
+
+- Every command has a *name* chosen by a programmer \rightarrow Usually english words separated by dashes (e.g., =forward-char=)
+  - Internally, each command is a *special type of Lisp function* \rightarrow Its actions are performed by running it (See "What is a Function" in Elisp Ref Manual)
+
+- The binding between keys and commands are recorded in tables called *keymaps*
+
+- "=C-n= moves down vertically one line" is *not correct strictly speaking* (language abuse is tolerated)
+  - Instead, =C-n= is *bound to the command* =next-line=, which *moves point vertically downward*
+  - \rightarrow Powerful concept that allows users to give any key the behavior they want
+  - (In this manual, the name of the command which really does the work is usually *between parentheses* after mentioning the key that runs it)
+
+
+- _Variable: a name used to store a value_
+  - Often command descriptions will say: "To change this, set the variable =mumble-foo="
+  - Most variables documented in this manual are meant for *customization*
+  - Commands or other parts of Emacs will *examine the variable* and *alter their behavior accordingly*
+  - (See dedicated section "Variables")
+
+
+
+
+
 
