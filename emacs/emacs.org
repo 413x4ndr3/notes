@@ -139,7 +139,7 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
 |------------------+--------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-------------------|
 | (A) /menu bar/   | Very top of the /frame/              | *Access commands* via series of menus                                                                                                               | Yes                   | Yes               |
 | (A) /tool bar/   | Below the /menu bar/                 | A row of icons that *perform editing commands* when clicked                                                                                         | Yes                   | No                |
-| (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it                                                   | Yes                   | Yes               |
+| (An) /echo area/ | Very bottom of the /frame/           | Where *informative messages* are displayed + Where you *enter information* when Emacs asks for it (in the /minibuffer/)                             | Yes                   | Yes               |
 | (A) /window/     | Below the /tool bar/ (if one exists) | *Main area* of the frame + Where the *buffer* (i.e., the text you are editing) is displayed                                                         | Yes                   | Yes               |
 | (A) /scroll bar/ | Very right of each /window/          | Can be used to *scroll through the displayed buffer*                                                                                                | Yes                   | No                |
 | (A) /mode line/  | Last line of each /window/           | *Displays various information* about what is going on in the buffer (e.g., unsaved changed, editing modes that are in use, the current line number) | Yes                   | Yes               |
@@ -152,7 +152,7 @@ See Section "Preface" in [[https://www.gnu.org/software/emacs/manual/eintr.html]
 (Each of which can *independently display a buffer* (even the same one))
 
 - At any time, *one window is the selected window*.
-  - On /graphical display/: shown with a *more prominent cursor* (usually solid and blinking); other windows show a less prominent cursor (usually a hollow box).
+  - On /graphical display/: shown with a *more prominent cursor* (usually solid and blinking); other windows show a *less prominent cursor* (usually a hollow box).
   - On /text terminal/: there is *only one cursor*, which is shown in the selected window.
 
 - The buffer displayed in the selected window is called the *current buffer* \rightarrow _this is where editing happens_.
@@ -166,7 +166,7 @@ _Most Emacs commands implicitly apply to the current buffer_
 ** Point
 
 - _Point: the location where most editing commands take place_
-(The term "point" commes from the character '.', which was the command in *TECO* for accessing editing position)
+(The term "point" comes from the character '.', which was the command in *TECO* for accessing editing position)
 (TECO (Text Editor and Corrector) is the language in which the original Emacs was written in)
 
 _Cursor \neq Point_ \rightarrow _The cursor shows where the point is_
@@ -189,13 +189,13 @@ _The cursor remains over the same character before and after inserting character
 
 
 - _Each buffer has its own value of point_
-- _A buffer that is not currently displayed remembers its value of point if you later display it again_
-- _If a same buffer is displayed in multiple windows, each of thos windows has its own value of point_
+- _A buffer that is not currently displayed remembers its value of point if you later display it back__
+- _If a same buffer is displayed in multiple windows, each of those windows has its own value of point_
 
 
 ** The Echo Area
 
-- _The echo area is so-named because one of its use is for echoing_ (i.e., displaying the characters of a *multi-character command* as you type)
+- _The echo area is so-named because one of its use is echoing_ (i.e., displaying the characters of a *multi-character command* as you type)
   - _Single-character commands are not echoed_
   - _Characters typed so far for a multi-character command echoed if pause > 1 sec_ (to prompts you for the rest)
   - _Once echoing has started, the rest of the command echoes *immediately* as you type_ \rightarrow Behavior designed to give *confident users fast reponses* and *hesitant users maximum feedback*
@@ -207,8 +207,8 @@ _The cursor remains over the same character before and after inserting character
 - Some commands display /informative messages/ in the echo area \rightarrow Telling you what the command has done or to provide you with specific information.
 - (No beep or flash)
 
-| Key   | Command                                                                                            |
-|-------+----------------------------------------------------------------------------------------------------|
+| Key     | Description                                                                                        |
+|---------+----------------------------------------------------------------------------------------------------|
 | =C-x == | *Describe character at point*, its *position in the buffer* and its *current column in the window* |
 
 
@@ -221,11 +221,16 @@ _The cursor remains over the same character before and after inserting character
 (=*Message*= buffer is limited to a certain number of lines specified by the =message-log-max= variable)
 (The oldest line is deleted whenever a new line is added at the end)
 
+| Key     | Description                                                 |
+|---------+-------------------------------------------------------------|
+| =C-h e= | Go to the =*Messages*= buffer which logs echo-area messages |
+
 
 - The echo area is also used to display the /minibuffer/ \rightarrow I.e., a special window where you can input arguments to commands (e.g., the name of a file to be edited))
 - When the minibuffer is in use, the text of the echo area begins with a /prompt string/ and it *becomes temporarily the selected window* (\implies the cursor appears within the minibuffer).
 
 \rightarrow You can always get out of the minibuffer by typing =C-g=
+
 
 
 ** The Mode Line
@@ -248,8 +253,8 @@ cs:ch-fr  buf      pos line   (major minor)
 - =cs:= describe the *character set* and *newline convention* used for the *current buffer*.
   - (Normally, Emacs *automatically handles these settings* \right arrow But it is sometimes useful to have this information)
 
-  - if =-=: *no special character set* handling (with the possible exception of end-of-line conventions)
-  - if ===: *no conversion* whatsoever \rightarrow usually for files with non-textual data
+  - =-=: *no special character set* handling (with the possible exception of end-of-line conventions)
+  - ===: *no conversion* whatsoever \rightarrow Usually for files with non-textual data
   - Other characters represents various /coding systems/ (e.g., '1' represents ISO Latin-1, 'U' represents UTF-8)
 
   - (_On text terminal only:_ cs is preceded by two additional characters: *coding systems* for *keyboard input* and *terminal output*)
@@ -330,5 +335,8 @@ cs:ch-fr  buf      pos line   (major minor)
 - (Use *up or down arrow keys +* =RET= or *type the character* before the ====>= to *select a menu item*)
 - (=tmm-menu= menu items are *mouse-sensitive*)
 - (Set =tty-menu-open-use-tmm= to a non-nil value and =F10= *will run the command* =tmm-menu-bar= *instead of dropping down the menu*)
+
+
+
 
 
