@@ -1,0 +1,360 @@
+#+TITLE: GNU Emacs Tutorial - Notes
+
+GNU Emacs Tutorial
+
+Emacs version 25.3.1
+
+
+* Notes
+
+- _CONTROL key:_ sometimes labeled as CTRL or CTL \rightarrow C-<chr>
+- _META key:_ sometimes labeled as EDIT or ALT \rightarrow M-<chr>
+
+| Key                | Command                      | Description                                                                                           |
+|--------------------+------------------------------+-------------------------------------------------------------------------------------------------------|
+| =C-x C-c=          | =save-buffers-kill-terminal= | End the Emacs session                                                                                 |
+| =C-g=              | =keyboard-quit=              | Quit a partially entered command                                                                      |
+| =C-z (or C-x C-z)= | =suspend-frame=              | Do whatever is right to suspend the current frame                                                     |
+|                    |                              |                                                                                                       |
+| =C-v=              | =scroll-up-command=          | Move forward one screenful (*overlap of 2 lines* to provide some continuity)                          |
+| =M-v=              | =scroll-down-command=        | Move backward one screenful                                                                           |
+| =C-l=              | =recenter-top-bottom=        | Clear screen and redisplay all the text, moving the text aroud the cursor to the center of the screen |
+
+- (You can also use <PageUp> and <PageDn> to move screenful)
+- (You can also use the arrow keys to move point)
+
+- =C-x C-c= is the right key to use when about to log out or ending a quick edit (e.g., with filename as argument to Emacs)
+
+- With numeric prefix ARG, =C-l= move current line to window-line ARG
+
+
+| =C-f=             | =forward-char=           | Move forward a character            |
+| =C-b=             | =backward-char=          | Move backward a character           |
+|                   |                          |                                     |
+| =M-f=             | =forward-word=           | Move forward a word                 |
+| =M-b=             | =backward-word=          | Move backward a word                |
+|                   |                          |                                     |
+| =C-n=             | =next-line=              | Move to next line                   |
+| =C-p=             | =previous-line=          | Move to previous line               |
+|                   |                          |                                     |
+| =C-a (or <home>)= | =move-beginning-of-line= | Move to beginning of line           |
+| =C-e=             | =move-end-of-line=       | Move to end of line                 |
+|                   |                          |                                     |
+| =M-a=             | =backward-sentence=      | Move back to beginning of sentence  |
+| =M-e=             | =forward-sentence=       | Move forward to end of sentence     |
+|                   |                          |                                     |
+| =M-< (or <)=      | =beginning-of-buffer=    | Move to the beginning of the buffer |
+| =M-> (or >)=      | =end-of-buffer=          | Move to the end of the buffer       |
+
+- Normally, the last line in a file will have a Newline character at the end, but Emacs does not require it
+- =C-b= and =C-f= move accross the Newline character
+
+- When the cursor move past the top or bottom of the screen, the text beyond the edge shfts onto the screen \rightarrow /Scrolling/
+
+- When you are in the middle of a word, =M-f= moves to the end of the word
+- When you are in whitespace between words, =M-f= moves to te end of the following word
+- =M-b= works likewise in the opposite direction
+
+- Very often *Meta characters* are used for operations related to the *units defined by language* (words, sentences, paragraphs), while *Control characters* operate on *basic units* that are independent of what you are editing (characters, lines, etc)
+
+
+| =C-u N= (or =M-N=) | =universal-argument= | Begin a numeric argument (or prefix argument for the following command) |
+
+- *Most Emacs commands accept a numeric argument*; for most commands, this serves as a repeat-count
+- Several commands use it as a flag: the presence of a prefix argument makes the command do something different *regardless of its value*
+- =C-u= *method is recommanded* over the Meta method because *it works on any terminal*
+
+- With numeric prefix ARG, =C-v= and =M-v= scroll the text up or down *by ARG*
+- With numeric prefix ARG, =C-l= move current line to *window-line ARG*
+
+
+| =C-g= | =keyboard-quit= | Stop current command / prefix key |
+
+- Some commands are *disabled by default* (e.g., =C-x C-l=) so that beginning users cannot use them by accident
+- Type =SPC= if you want to try the command
+
+
+| =C-x 1=                | =delete-other-windows= | Delete other windows                             |
+| =C-h k <Complete KEY>= | =describe-key=         | Display documenation the function invoked by KEY |
+
+- =q= to quickly switch back to previous buffer (once a temporary one has been opened, like =*Buffer list*=)
+- =<Key>= designates a key to press
+
+- =C-h= commands opens a unique buffer named =*Help*=: its content is updated whenever you ask for help \rightarrow I.e., no new buffer is created each time you ask for help
+
+
+| =<Ordinary character>=  | =self-insert-command N= | Insert the character you type                |
+|                         |                         |                                              |
+| =<DEL>=                 | =delete-forward-char=   | Delete the character just before the cursor  |
+| =C-d (or <deletechar>)= | =delete-char=           | Delete the next character after the cursor   |
+|                         |                         |                                              |
+| =M-<DEL>=               | =backward-kill-word=    | Kill the word immediately before the cursor  |
+| =M-d=                   | =kill-word=             | Kill the next word after the cursor          |
+|                         |                         |                                              |
+| =C-k=                   | =kill-line=             | Kill from the cursor position to end of line |
+| =M-k=                   | =kill-sentence=         | Kill to the end of the current sentence      |
+
+- Ordinary characters insert text
+
+- There are very narrow spaces refered as *fringes* on each side of a window
+- If using Emacs in a graphical window, small curved arrows appear in each fringe for *continuation lines* (= lines that are so wide that they will not fit on screen)
+  - (In text terminal, a =\= is on the rightmost screen column)
+  - In certain modes, an *arrow pointing towards the edge of the screen* is shown in the fringes instead \rightarrow Indicates that there is more text in that direction
+
+- Deleting a Newline character between two lines merge them into *one line*
+- <Return> is special since it may do more than just insert a Newline character: it may insert whitespace after the Newline character to align text with the previous line
+- _Electric behavior:_ when pressing a key does more than simply inserting the relevant character
+
+
+| =C-SPC (or C-@)= | =set-mark-command= | Set the mark where point is, and activate it; or jump to the mark |
+
+- Kill a segment of text with one uniform method: =C-<SPC>= \rightarrow Move point \rightarrow =C-w=
+  - (Character at point is not killed)
+
+- *Kill VS Delete:* killed text can be yanked later
+  - (Get deleted text back with undos)
+  - Commands that remove a lot of text usually kill it
+
+- =C-k= will kill a Newline character only if the cursor is on it: =C-k= twice to kill a whole line
+  - _However =C-u <n> C-k>= will kill =n= lines with their Newline character=
+
+- Killing and yanking is sometimes called cutting and pasting in other text editors
+
+
+| =C-y= | =yank=     | Reinsert the last stretch of killed text (i.e., the most recent kill) |
+| =M-y= | =yank-pop= | Replace just-yanked stretch of killed text with a different stretch   |
+
+- =yank= insert text at point
+- You can call =yank= multiple times
+
+- !!! _If multiple kills are done in a row, all of the kiled text is saved together_
+  - (Moving point counts)
+
+- =yank-pop= must be called just after a =yank= call
+- (When you reach the wanted stretch of killed text, continue your editing)
+- =yank-pop= cycles: if the earliest kill has been reached, the next =yank-pop= will insert the most recent kill again
+
+- With argument N, *insert the Nth previous kill*
+  - If N is negative, this is a *more recent kill*
+
+
+| =C-/ (or C-_ or C-x u | =undo= | Undo some previous changes |
+
+- _A numeric ARG to =undo= serves as a _repeat count_
+- Each repetition undoes one more command
+
+- _Commands that do not change the text don't count_ \rightarrow E.g., cursor motion commands, scrolling commands
+- _Self-inserting characters are usually handled in groups of up to 20_ \rightarrow To reduce the number of =undo= call
+
+- (On some text terminal, =C-_= actually send =C-_= to Emacs)
+
+- Killing or yanking makes no difference for =undo=
+
+
+| =C-x C-f= | =find-file=         | Switch to a buffer visting file FILENAME, creating one if none already exists                                   |
+| =C-x C-s= | =save-buffer=       | Save current buffer in visited file if modified                                                                 |
+| =C-x s=   | =save-some-buffers= | Save some modified file-visiting buffers and asks user about each one (=C-r= to look at the buffer in question) |
+
+- When saving, Emacs leaves the original file under "original~" in case you later decide that your changes were a mistake
+
+- !!! _We say that a command like =find-file= reads an argument_
+  - The /minibuffer/ disappears when pressing <RET>
+
+- Consider using <TAB> when invoking =find-file=
+
+- =save-buffer= display the written file FILENAME in the /echo area/
+- Interesting options for backing up files by prefixing a certain numbers of =C-u= in front of =C-x C-s=
+
+- _In Elisp, =switch-to-buffer= is NOT the way to work on another buffer temporarily_ \rightarrow Use =set-buffer= insted
+
+
+| =C-x C-b= | =list-buffers=      | Display a list of existing buffers (in a buffer named =*Buffer List*=)                                          |
+| =C-x b=   | =switch-to-buffer=  | Display buffer BUFFER-OR-NAME in the selected window                                                            |
+
+- !!! _When using =C-x b=, you can press =TAB= to list al possible completions (and thus list buffers)_
+
+- _A buffer is an *intermediate* between your editing (in the memory) and the file on the disk_
+  - The need to save a buffer allows to avoid avoid leaving a half-changed file on the system when you do no not want to
+
+- _A buffer is an *object*_
+
+- *Finding a file makes a new buffer* inside Emacs
+
+- _ANY text you see in an Emacs window is *always part of some buffer*_
+
+- _Only one buffer is /current/ at any time_
+
+- =switch-to-buffer= is more convenient than calling =find-file= every time you want to switch to another buffer
+  - (Works as well and will not create a new buffer)
+  - (You must enter the complete buffer name when prompted)
+
+- Most of the time, a buffer name is the name of the corresponding file's FILENAME on the disk \rightarrow But this is not always true
+
+- Some buffers *do not correspond to any file on disk* \rightarrow E.g., =*Buffer List*=, =*Messages*=
+  - It is the case when opening the tutorial \rightarrow Until you save it with =C-x C-s=
+
+- _Switching between buffers do not save any of them on disk__
+
+- Consider using =C-x s= to *save a buffer that you would want to switch to only to save it*
+  - (Instead of switching and invoking =save-buffer=)
+
+
+| =C-x= | - | Character eXtend; followed by one character   |
+| =M-x= | - | Named command eXtend; followed by a long name |
+
+- Allows to invoke *any command* without knowing/using its bound key
+  - (Emacs offers more commands than the number of commands that can be bound to key sequences (of reasonalbe size) anyway)
+
+- =M-x= commands name can be completed by pressing =<TAB>=
+  - E.g., =repl s<TAB>= (\rightarrow =replace-=) \rightarrow =replace-string=
+  - Under certain conditions, <RET> and <SPC> can complete names too
+
+- In =M-x= minibuffer, use =M-p= and =M-n= for previous/next command in command history
+
+
+| - | =replace-string= | Replace occurences of FROM-STRING with TO-STRING |
+
+
+- Emacs periodically writes an *auto save* file for each file that are being edited
+  - _Auto saved file name format:_ #filename#
+  - Auto saved files are automatically deleted once the original file is saved
+
+
+- If a crash occur, you can recover auto-saved editing by visiting the file normally and invoke =M-x recover-this-file=
+  - (A notice would appear in the /echo area/ if text if some text is recoverable)
+- =M-x recover-file= visit file FILE, but get contents from its last auto-save file
+- =M-x recover-session= can be convenient as well (=recover-session-finish= when done)
+
+
+- The default major mode in Emacs is =Fundamental=
+
+
+| =M-;=   | =comment-dwim=    | Call the comment command you want (Do what I mean)                    |
+|         |                   |                                                                       |
+| =C-h m= | =describe-mode=   | Display documentation of current major mode and minor modes           |
+| -       | =text-mode=       | Major mode for editing text written for humans to read                |
+| -       | =auto-fill-mode=  | Toggle automatic line breaking (Minor mode)                           |
+|         |                   |                                                                       |
+| =C-x f= | =set-fill-column= | Set fill-column to specified argument (with C-u) (Works in any mode?) |
+| =M-q=   | =fill-paragraph=  | Fill paragraph at or after point                                      |
+
+- =comment-dwim= will check the *major mode* to know which commment format to insert
+
+- =Text mode= is an appropriate major mode to edit human-language text
+  - When enabled, e.g., =M-f= and =M-b= treat apostrophes as part of words (\neq word separator in =Fundamental=)
+  - *Major modes usually make subtle changes like this:* most commands do the same job but works a bit differently
+
+- _Consider =C-l= =C-l= over =C-u 0 C-l=_
+
+- *Minor modes* bring minor modification to the *major mode*
+  - They are *independant* from major mode and other minor modes \rightarrow You can use 0, 1 or n minor modes at any time
+  - _Toggle_ a minor mode by invoking it
+
+- _Auto fill mode:_
+  - =au  f<RET>= enables Auto fill mode with completion
+  - Auto Fill breaks lines only at spaces
+  - Margin is usually set at 70 characters
+  - Fill column is not updated for the whole text \rightarrow Invoke =fill-paragraph= to re-fill paragraph to the current fill-column
+
+
+| =C-s= | =isearch-forward=  | Do incremental search forward (With a prefix argument, do an icremental regular expression search instead)  |
+| =C-r= | =isearch-backward= | Do incremental search backward (With a prefix argument, do an icremental regular expression search instead) |
+
+- Type =C-s=/=C-r= again to move to next occurence
+
+- You can easily switch between =C-s= and =C-r= by typing one of the two while searching
+  
+- _=C-s=/=C-r= search string AFTER/BEFORE point (they both do both actually)_
+  - _The first occurence is highlighted (distinctly) and the point is moved on it_
+    - =<RET>= *validates the position of point* on that first occurence
+    - !!! =<C-g>= _or any Control/Meta character that is not special to =isearch= *terminates* the search_ and place point back where it was
+
+- !!! _Consider using =C-s= and =C-r= for cursor motion_
+  - (Why would there be a C-r then?)
+
+- Therer are both cursor motion command
+- The Emacs search command is *incremental*: the search happens while you type in the string to search for
+  - You can easily add or remove characters to the searched string
+
+- =C-s= have an extensive help page
+
+
+| =C-l= =C-l=              | =recenter-top-bottom=    | It is cycling (successive calls place point accoriding to the cycling order defined by the variable (array) recenter-positions) \rightarrow Pressing it twice moves the window line where the point is on top |
+|                          |                          |                                                                                                                                                                                                               |
+| =C-x 2=                  | =split-window-below=     | Split the selected window into two windows, one above the other (*the selected window stays above*)                                                                                                           |
+| =C-M-v (or M-<next>)=    | =scroll-other-window=    | Scroll next window upward ARG lines; or near full screen if no ARG                                                                                                                                            |
+| =C-x o=                  | =other-window=           | Select another window in *cyclic ordering of windows* (Can take negative argument)                                                                                                                            |
+|                          |                          |                                                                                                                                                                                                               |
+| =C-x 4 C-f (or C-x 4 f)= | =find-file-other-window= | Edit file FILENAME, in another window (and select that window)                                                                                                                                                |
+| =C-x 4 C-o=              | =display-buffer=         | Display BUFFER-OR-NAME in some window, without selecting that window                                                                                                                                          |
+
+- Each Emacs window display one *buffer*
+  - Multiple windows can display the same buffer \rightarrow This is what happens when opening another window
+
+- The order in which you press the *modifier keys* of CONTROL-META character does not matter
+  - (It matters if you are using =ESC C-v= (since =ESC= is a prefix key sequence))
+
+- =C-1= deletes every other window but the selected one
+
+- _Emacs is thought in a manner that makes the cursor always visible in the window_ \rightarrow The window adapts itself
+
+
+| -         | =make-frame=   | Return a newly create frame displaying the current buffer (there is nothing special about the first frame) |
+| =C-x 5 0= | =delete-frame= | Delete FRAME, permanently eliminating it from use                                                          |
+
+- !!! _A frame is mostly a collection of windows (along with all the other smaller regions)_
+
+- Only a *single frame can be shown at a time* when using *text terminal*, on the contrary to *multiple frames* when using a *graphical display*
+
+- You can also delete a frame normally by using your window manager
+
+- !!! _If you remove the Emacs job's last frame, that exits Emacs_
+
+
+| =ESC ESC ESC (or M-ESC ESC)= | =keyboard-escape-quit= | Exit the current "mode" (in a greneralized sense of the word) (e.g., query-replace, prefix argument or a region, minibuffer or other recursive edit, go back to a single window) |
+
+- Sometimes you will get into a *recursive editing level*
+  - Indicated by [] around modes in the /mode line/: e.g., [(Fundamental)]
+  - Use =ESC ESC ESC= to get out; =C-g= will not work
+    - \rightarrow Because =C-g= is used for canceling commands and arguments WITHIN the recursive editing level
+
+
+| =C-h ? (or C-h C-h)= | =help-for-help=        | Help command                                                                                        |
+|                      |                        |                                                                                                     |
+| =C-h c=              | =describe-key-briefly= | Print the name of the function KEY invokes in the echo area; KEY is a string                        |
+| =C-h k=              | =describe-key=         | Display documentation of the function invoked by KEY                                                |
+| =C-h a=              | =apropos-command=      | Show commands (interactively callable function) that match PATTERN                                  |
+|                      |                        |                                                                                                     |
+| =C-h f=              | =describe-function=    | Display the full documentation of FUNCTION (a symbol)                                               |
+| =C-h v=              | =decribe-variable=     | Display the full documentation of VARIABLE (a symbol)                                               |
+|                      |                        |                                                                                                     |
+| =C-h i=              | =info=                 | Enter Info, the documentation browser (Optional argument FILE-OR-NODE specifies the file to examine |
+| =C-h r=              | =info-emacs-manual=    | Display the Emacs manual in info mode                                                               |
+| =C-h t=              | =help-with-tutorial=   | Select the Emacs learn-by-doing tutorial                                                            |
+
+- Emacs provides commands for reading documentation about Emacs commands
+
+- _Consider using =TAB= to complete symbol names while using those help commands_
+
+- Most function names are wisely chosen to *indicate already well enough what one of them does* \rightarrow Sufficient most of the time
+
+- =C-h= is commonly referred as *the Help character*
+  - (You could also use =F1= or =M-x help=)
+
+- =C-h k= and =C-h c= prompts you for *a complete key sequence*
+
+- (Likewisely to opening a window?), opening a window containing the =*Help*= buffer does not change the selected widow
+  - You can do some editing while referring to the help text, and *get rid of the related window when done*
+
+- =C-h a= will also list *key sequences bound to commands* if one exist (\rightarrow Listed beside)
+  - (=C-h a= prompts you for a regexp or a word list)
+
+- =C-h i= allow you to read manuals for the packages installed on your system
+  - _Type =m= to select a menu item in an info page_
+  - _Type ? and Emacs will take you on a guided tour of Info mode facilities_
+
+
+
+\rightarrow "Once you are through with this tutorial, you should consult the Emacs Info manual as your primary documentation."
+\rightarrow "However, you may want to learn more about Emacs since it has many other useful features."
+\rightarrow "Two features that you may like especially are completion, which saves typing, and dired, which simplifies file handling."
