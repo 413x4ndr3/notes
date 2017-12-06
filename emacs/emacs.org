@@ -15,9 +15,10 @@ GNU Emacs Manual
 
 - The integrated learn-by-doing *tutorial* should be read *before* this manual.
 
-| Key     | Command            |
-|---------+--------------------|
-| =C-h t= | Run the *tutorial* |
+| Key     | Command              | Description        |
+|---------+----------------------+--------------------|
+| =C-h t= | =help-with-tutorial= | Run the *tutorial* |
+
 
 - Chapters reading:
 
@@ -337,10 +338,6 @@ cs:ch-fr  buf      pos line   (major minor)
 - (Set =tty-menu-open-use-tmm= to a non-nil value and =F10= *will run the command* =tmm-menu-bar= *instead of dropping down the menu*)
 
 
-
-
-
-
 * Characters, Keys and Commands
 
 - *Character sets* used by Emancs for *input commands*
@@ -443,8 +440,8 @@ cs:ch-fr  buf      pos line   (major minor)
   - (See dedicated section "Variables")
 
 
-
 * Entering and Exiting Emacs
+
 
 ** Entering Emacs
 
@@ -453,8 +450,8 @@ cs:ch-fr  buf      pos line   (major minor)
 - *In the background:* =$ emacs&;= \rightarrow Useful if runned from a terminal in a graphical window (since it won't tie up to the terminal window)
 
 - *Visit one or more files (as soon as starting up):* =$ emacs foo.txt
-  - _This feature exists mainly for compatibility with other editors (which are often dedigned to be launched from the shell for short editing sessions)_
-    - (Compatility needed with for the shell default text editor to be launched by default)
+  - _This feature exists mainly for compatibility with other editors (which are often designed to be launched from the shell for short editing sessions)_
+    - (E.g., compatility needed with for the shell default text editor to be launched by default)
 
   - The initial frame will be split into 2 windows: one displaying the *first file of the list* and the other displaying the *startup screen*.
 
@@ -466,9 +463,9 @@ cs:ch-fr  buf      pos line   (major minor)
 - When Emacs starts up, the *initial frame* displays a special buffer named =*GNU Emacs*=
   - (This /startup screen/ contains useful information and links to commons tasks for beginning users)
 
-  - A link can be followed:
-    - By placing the point on it + =RET=
-    - By pressing =mouse-1= on it
+  - A link can be followed by:
+    - Placing the point on it + =RET=
+    - Pressing =mouse-1= on it
 
   - (If the variable =inhibit-startup-screen= is non-=nil=, Emacs does *not display this startup screen*)
     - (A buffer named =*scratch*= is displayed if no file was passed as argument \rightarrow Can be used to *evaluate Emacs Lisp expressions interactively* (See Section Lisp Interaction)
@@ -481,6 +478,7 @@ cs:ch-fr  buf      pos line   (major minor)
 - To edit a file *from another program while Emacs is running*, use the =emacsclient= helper to open a file in the existing session
 
 - (See Appendix C [Emacs Invocation] to see other available arguments)
+
 
 
 ** Exiting Emacs
@@ -503,7 +501,8 @@ cs:ch-fr  buf      pos line   (major minor)
     - It asks for confirmation again if you *do not save any*
     - It also asks for confirmation if *subprocesses are still running* (since Emacs is the parent process)
 
-  - =save-buffers-kill-terminal= behaves specially if using Emacs as a *server* \rightarrow It closes connection if you type it from a client
+  - =save-buffers-kill-terminal= behaves specially if using Emacs as a *server*
+    - + It closes connection if you type it from a client
 
   - Optionally, Emacs can record *certain session information* when you kill it for later sessions \rightarrow E.g., files you were visiting
     - _Variables:_
@@ -519,10 +518,81 @@ cs:ch-fr  buf      pos line   (major minor)
   - _On graphical display:_  hides the frame in a way that let you *bring it back later*
     - (Exactly how this hiding occurs depends on the window system)
   - _On text terminal:_ /suspends/ Emacs; stoppping the program temporarily and returning control to the parent process (a shell most of the time)
-    - =$ emacs%= to resume (in most shells)
+    - =$ fg = or =$ emacs%= to resume (in most shells)
 
-  - Text terminals usually *listen for certain special characters whose meaning is to send signals* to the program you are running \rightarrow E.g., =^C=, =^Z^
+  - Text terminals usually *listen for certain special characters whose meaning is to send signals* to the program you are running \rightarrow E.g., =^C=, =^Z^=
     - _This terminal feature is turned off while you are in Emacs_
     - =C-x C-c= and =C-z= keys are inspired by the use of similar combinations on several OS but *that is their only relationship with the OS*
+
+
+
+* Basic Editing Commands
+
+- Basic editing commands can be learnt in the *Emacs learn-by-doing tutorial*
+
+
+** Inserting Text
+
+- Insert any ordinary /graphic character/ (e.g., =a=, =B=, =3=) by typing the associated key
+  - (\rightarrow Passed as argument to =self-insert-command=)
+  - (Insertion *moves point forward* to keep it *after* the inserted text)
+
+- =RET= invokes =newline=: insert =newline character= + indent according to major mode
+- (If point at *end of line*: blankline just after + indent)
+  - (If point at *middle of line*: line is split at point + indent)
+
+- /Auto-identation/ can be turned off by disabling *Electic Indent mode*
+- =C-j= invokes =electric-newline-and-maybe-indent= \rightarrow No indent by default
+
+
+- The way text insertion is handled can be changed by *toggling minor modes*
+  - E.g., *Auto Fill mode* splits lines automatically when too long, *Overwrite mode* causes inserted characters overwriting existing text
+
+- *Only graphic characters can be inserted by typing the associated key*
+- *Other characters act as editing commands* and do not insert any byte in the buffer
+  - (E.g., =DEL= invokes =delete-backward-char= (some modes bind it to different one) \neq Insert a literal =DEL= character (ASCII 127))
+
+
+- Insert a non-graphic or any character that is not supported by your keyboard by */quoting/ it*
+
+| Key   | Command         | Description                                                                                                                                   |
+|-------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------|
+| =C-q= | =quoted-insert= | Read next input character and insert it. This is useful for inserting control character. With argument, insert /ARG/ copies of the character. |
+
+- Two ways of using =C-q=:
+  1) =C-q= + any non-graphic character (even =C-g=) = *Inserts that character*
+     - (E.g., =C-q DEL= inserts a literal =DEL= character)
+
+  2) =C-q= + a sequence of octal digits + any non-digit to terminate (even =RET=; nothing special) = *Inserts the character with the specified octal character code*
+     - (E.g., =C-q 1 0 1 B= inserts =AB=)
+     - *Disabled in Overwrite mode* \rightarrow =C-q= can be used instead to *insert a character* (+ octal digits are not handled specially)
+     
+     - _Variables:_
+       - You can change the /radix/ (= the base of a system of numeration) by setting =read-quoted-char-radix= \rightarrow E.g., 10, 16
+	 - (When using hexadecimal, a-f character can be typed (case ignored))
+
+
+- *Common Unicode characters can be inserted more conveniently* (than quoting them) with the prefix key =C-x 8=
+
+| Key       | Character | Code-point | Unicode name                                               |
+|-----------+-----------+------------+------------------------------------------------------------|
+| =C-x 8 [= | ‘         | U+2018     | LEFT SINGLE QUOTATION MARK ("curved quote", "curly quote") |
+| =C-x 8 ]= | ’         | U+2019     | RIGHT SINGLE QUOTATION MARK                                |
+| =C-x 8 {= | “         | U+201c     | LEFT DOUBLE QUOTATION MARK                                 |
+| =C-x 8 }= | ”         | U+201d     | RIGHT DOUBLE QUOTATION MARK                                |
+
+| Key         | Command       | Description                                                                                               |
+|-------------+---------------+-----------------------------------------------------------------------------------------------------------|
+| =C-x 8 RET= | =insert-char= | Insert /COUNT/ copies of /CHARACTER/. Interactively prompt for /CHARACTER/ (multiple ways to specify it). |
+| =C-x 8 C-h= | -             | Key translations starting with =C-x 8=                                                                    |
+
+- =insert-char= can take either *code-point* (hex by default (the convention for Unicode); or other with specified radix (e.g., =#o23072=)) or *Unicode name*
+  - \rightarrow *Provides completion* (*like most commands*) for Unicode names (e.g., =C-x 8 RET left sin TAB RET=)
+  - (See Section /Integer Basics/ in the Elisp Ref Manual)
+
+- In some contexts, if quotation (simple or double) is typed using ` and ', it is converted to a form using quotation marks (c.f., Electric Quote mode)
+  - (See Section /Quotation Marks/)
+
+- (A functional =Alt= key (\neq =Meta=) acts like =C-x 8= \rightarrow E.g.,  =A-[= \logeq =C-x 8 [=)
 
 
