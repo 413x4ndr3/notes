@@ -20,7 +20,7 @@ Emacs version 25.3.1
 | =M-v=              | =scroll-down-command=        | Move backward one screenful                                                                           |
 | =C-l=              | =recenter-top-bottom=        | Clear screen and redisplay all the text, moving the text aroud the cursor to the center of the screen |
 
-- (You can also use <PageUp> and <PageDn> to move screenful)
+- (You can also use =<PageUp>= and =<PageDn>= to move screenful)
 - (You can also use the arrow keys to move point)
 
 - =C-x C-c= is the right key to use when about to log out or ending a quick edit (e.g., with filename as argument to Emacs)
@@ -116,7 +116,7 @@ Emacs version 25.3.1
   - Commands that remove a lot of text usually kill it
 
 - =C-k= will kill a Newline character only if the cursor is on it: =C-k= twice to kill a whole line
-  - _However =C-u <n> C-k>= will kill =n= lines with their Newline character=
+  - _However =C-u <n> C-k>= will kill =n= lines with their Newline character_
 
 - Killing and yanking is sometimes called cutting and pasting in other text editors
 
@@ -138,9 +138,9 @@ Emacs version 25.3.1
   - If N is negative, this is a *more recent kill*
 
 
-| =C-/ (or C-_ or C-x u | =undo= | Undo some previous changes |
+| =C-/ (or C-_ or C-x u)= | =undo= | Undo some previous changes |
 
-- _A numeric ARG to =undo= serves as a _repeat count_
+- _A numeric ARG to =undo= serves as a repeat count_
 - Each repetition undoes one more command
 
 - _Commands that do not change the text don't count_ \rightarrow E.g., cursor motion commands, scrolling commands
@@ -165,7 +165,7 @@ Emacs version 25.3.1
 - =save-buffer= display the written file FILENAME in the /echo area/
 - Interesting options for backing up files by prefixing a certain numbers of =C-u= in front of =C-x C-s=
 
-- _In Elisp, =switch-to-buffer= is NOT the way to work on another buffer temporarily_ \rightarrow Use =set-buffer= insted
+- _In Elisp, =switch-to-buffer= is NOT the way to work on another buffer temporarily_ \rightarrow Use =set-buffer= instead
 
 
 | =C-x C-b= | =list-buffers=      | Display a list of existing buffers (in a buffer named =*Buffer List*=)                                          |
@@ -193,7 +193,7 @@ Emacs version 25.3.1
 - Some buffers *do not correspond to any file on disk* \rightarrow E.g., =*Buffer List*=, =*Messages*=
   - It is the case when opening the tutorial \rightarrow Until you save it with =C-x C-s=
 
-- _Switching between buffers do not save any of them on disk__
+- _Switching between buffers do not save any of them on disk_
 
 - Consider using =C-x s= to *save a buffer that you would want to switch to only to save it*
   - (Instead of switching and invoking =save-buffer=)
@@ -257,14 +257,16 @@ Emacs version 25.3.1
   - Fill column is not updated for the whole text \rightarrow Invoke =fill-paragraph= to re-fill paragraph to the current fill-column
 
 
-| =C-s= | =isearch-forward=  | Do incremental search forward (With a prefix argument, do an icremental regular expression search instead)  |
-| =C-r= | =isearch-backward= | Do incremental search backward (With a prefix argument, do an icremental regular expression search instead) |
+| =C-s= | =isearch-forward=  | Do incremental search forward (With a prefix argument, do an incremental regular expression search instead)  |
+| =C-r= | =isearch-backward= | Do incremental search backward (With a prefix argument, do an incremental regular expression search instead) |
 
 - Type =C-s=/=C-r= again to move to next occurence
 
 - You can easily switch between =C-s= and =C-r= by typing one of the two while searching
+
+- Consider using =M-p=/=M-n= to browse search history while in isearch prompt
   
-- _=C-s=/=C-r= search string AFTER/BEFORE point (they both do both actually)_
+- _=C-s=/=C-r= search string AFTER/BEFORE point (they both do both actually but PARTIALLY)_
   - _The first occurence is highlighted (distinctly) and the point is moved on it_
     - =<RET>= *validates the position of point* on that first occurence
     - !!! =<C-g>= _or any Control/Meta character that is not special to =isearch= *terminates* the search_ and place point back where it was
@@ -272,7 +274,7 @@ Emacs version 25.3.1
 - !!! _Consider using =C-s= and =C-r= for cursor motion_
   - (Why would there be a C-r then?)
 
-- Therer are both cursor motion command
+- There are both cursor motion command
 - The Emacs search command is *incremental*: the search happens while you type in the string to search for
   - You can easily add or remove characters to the searched string
 
@@ -314,7 +316,7 @@ Emacs version 25.3.1
 | =ESC ESC ESC (or M-ESC ESC)= | =keyboard-escape-quit= | Exit the current "mode" (in a greneralized sense of the word) (e.g., query-replace, prefix argument or a region, minibuffer or other recursive edit, go back to a single window) |
 
 - Sometimes you will get into a *recursive editing level*
-  - Indicated by [] around modes in the /mode line/: e.g., [(Fundamental)]
+  - Indicated by =[]= around modes in the /mode line/: e.g., =[(Fundamental)]=
   - Use =ESC ESC ESC= to get out; =C-g= will not work
     - \rightarrow Because =C-g= is used for canceling commands and arguments WITHIN the recursive editing level
 
