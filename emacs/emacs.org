@@ -677,8 +677,7 @@ cs:ch-fr  buf      pos line   (major minor)
 - =C-k= will kill a *newline character only if it is under the cursor* \rightarrow Invoke =C-k= twice to kill a whole line (or use the new =C-S-DEL=)
   - However, *=C-u /n/ C-k= will kill /n/ lines* (with their newline character)
 
-- (See Section [Deletion] for more information about deletion commands)
-- (See Chapter 9 [Killing] for more information about killing related commands)
+- (See Chapter 9 [Killing], and Section [Deletion], for details)
 
 
 ** Undoing Changes
@@ -700,7 +699,7 @@ cs:ch-fr  buf      pos line   (major minor)
 
 - *=undo= invocation can be repeated*: each repetition undoes another earlier change \rightarrow Until the undo stack is empty (display an error messages when reached)
 
-- (See Section [Undo] for more information about =undo=)
+- (See Section [Undo], for details)
 
 
 ** Files
@@ -718,4 +717,17 @@ cs:ch-fr  buf      pos line   (major minor)
 
 - (=find-file= uses the minibuffer to read the argument that is given to it \rightarrow =RET= terminate the argument)
 
-- (See Chapter 15 [Files] for more information)
+- (See Chapter 15 [Files], for details)
+
+** Help
+
+| Key     | Command        | Description                                             |
+|---------+----------------+---------------------------------------------------------|
+| =C-h k= | =describe-key= | Display documentation of the *function invoked by /KEY/ |
+
+
+- =(F1= is an alias of =C-h)
+
+- =describe-functions= *describes existing functions* (and not only commands)
+
+- (See Chapter 7 [Help], for details)
