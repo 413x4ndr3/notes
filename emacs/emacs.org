@@ -677,7 +677,8 @@ cs:ch-fr  buf      pos line   (major minor)
 - =C-k= will kill a *newline character only if it is under the cursor* \rightarrow Invoke =C-k= twice to kill a whole line (or use the new =C-S-DEL=)
   - However, *=C-u /n/ C-k= will kill /n/ lines* (with their newline character)
 
-- (See Section [Deletion] for more detailed information about those commands)
+- (See Section [Deletion] for more information about deletion commands)
+- (See Chapter 9 [Killing] for more information about killing related commands)
 
 
 ** Undoing Changes
