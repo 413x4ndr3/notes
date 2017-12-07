@@ -648,3 +648,33 @@ cs:ch-fr  buf      pos line   (major minor)
 
   - Most of the Emacs commands works on *logical lines* (unlike =C-p= and =C-n=) \rightarrow E.g. =C-a= and =C-e=
     - (In this manual, commands working on *screen lines* will be pointed out)
+
+
+** Erasing Text
+
+| Key                  | Command                | Description                                                                                |
+|----------------------+------------------------+--------------------------------------------------------------------------------------------|
+| =DEL (or BACKSPACE)= | =delete-backward-char= | *Delete the character before point*, or the region if it is active                         |
+| =Delete=             | =delete-forward-char=  | *Delete the character after point (i.e., under the cursor)*, or the region if it is active |
+| =C-d=                | =delete-char=          | *Delete the character after point (i.e., under the cursor)*                                |
+|                      |                        |                                                                                            |
+| =C-k=                | =delete-char=          | *Kill to the end of line*                                                                  |
+| =M-d=                | =kill-word=            | *Kill forward to the end of the next word*                                                 |
+| =M-DEL=              | =backward-kill-word=   | *Kill back to the beginning of the previous word*                                          |
+
+
+- =DEL= \neq =Delete= key
+  - (Emacs may not recognize the =DEL= key properly (See Section [DEL Does Not Delete] if this problem occurs)
+
+- The difference between =Delete= and =C-d= is that =C-d= works *regardless of whether the region is active* \rightarrow *The region becomes unactive*
+
+- (=DEL= move point and the characters after it *backwards*)
+- (=Delete= does not move point but *move characters after point backwards* as well)
+  - (The next/previous line is *merged* with the current one *if a newline character is deleted*) 
+  
+- (If point was at the BOL, this deletes the preceding newline character, joining this line to the previous one \rightarrow Analogous behavior for =Delete= but at EOL)
+
+- =C-k= will kill a *newline character only if it is under the cursor* \rightarrow Invoke =C-k= twice to kill a whole line (or use the new =C-S-DEL=)
+  - However, *=C-u /n/ C-k= will kill /n/ lines* (with their newline character)
+
+- (See Section [Deletion] for more detailed information about those commands)
