@@ -546,7 +546,7 @@ cs:ch-fr  buf      pos line   (major minor)
 
 
 - The way text insertion is handled can be changed by *toggling minor modes*
-  - E.g., *Auto Fill mode* splits lines automatically when too long, *Overwrite mode* causes inserted characters overwriting existing text
+  - (E.g., *Auto Fill mode* splits lines automatically when too long, *Overwrite mode* causes inserted characters overwriting existing text)
 
 - *Only graphic characters can be inserted by typing the associated key*
 - *Other characters act as editing commands* and do not insert any byte in the buffer
@@ -569,7 +569,7 @@ cs:ch-fr  buf      pos line   (major minor)
      
      - _Variables:_
        - You can change the /radix/ (= the base of a system of numeration) by setting =read-quoted-char-radix= \rightarrow E.g., 10, 16
-	 - (When using hexadecimal, a-f character can be typed (case ignored))
+	 - (When using hexadecimal, a-f characters can be typed (case ignored))
 
 
 - *Common Unicode characters can be inserted more conveniently* (than quoting them) with the prefix key =C-x 8=
@@ -594,5 +594,3 @@ cs:ch-fr  buf      pos line   (major minor)
   - (See Section /Quotation Marks/)
 
 - (A functional =Alt= key (\neq =Meta=) acts like =C-x 8= \rightarrow E.g.,  =A-[= \logeq =C-x 8 [=)
-
-
