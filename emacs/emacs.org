@@ -678,3 +678,25 @@ cs:ch-fr  buf      pos line   (major minor)
   - However, *=C-u /n/ C-k= will kill /n/ lines* (with their newline character)
 
 - (See Section [Deletion] for more detailed information about those commands)
+
+
+** Undoing Changes
+
+- Emacs records a *list of changes made in the buffer text*, so you can undo/redo recent changes
+
+| Key                     | Command | Description                        |
+|-------------------------+---------+------------------------------------|
+| =C-/ (or C-x u or C-_)= | =undo=  | Undo one entry of the undo records |
+
+
+- Most of the time: *1 command = 1 undo entry*
+  - Very simple commands *may be grouped together* (E.g., kill commands)
+  - However, sometimes an entry may cover just part of a complex command
+
+- *The undo command applies only to changes in the buffer* \rightarrow *Cursor motion commands are not stored*
+
+- When undoing the laste change, *point moves back where it was before the change*
+
+- *=undo= invocation can be repeated*: each repetition undoes another earlier change \rightarrow Until the undo stack is empty (display an error messages when reached)
+
+- (See Section [Undo] for more information about =undo=)
