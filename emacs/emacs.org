@@ -700,3 +700,21 @@ cs:ch-fr  buf      pos line   (major minor)
 - *=undo= invocation can be repeated*: each repetition undoes another earlier change \rightarrow Until the undo stack is empty (display an error messages when reached)
 
 - (See Section [Undo] for more information about =undo=)
+
+
+** Files
+
+| Key       | Command       | Description                                                                                              |
+|-----------+---------------+----------------------------------------------------------------------------------------------------------|
+| =C-x C-f= | =find-file=   | Edit file /FILENAME/ or switch to a buffer visiting file /FILENAME/, *creating a new empty buffer* if none already exists |
+| =C-x C-s= | =save-buffer= | Save current buffer in visited file if modified (+ variations for backup files using /ARG/)              |
+
+- Text that you insert in an Emacs buffer *lasts only as long as the Emacs session* \rightarrow Must be put in a file to *save changes permanently*
+
+- !!! *Emacs obeys the =find-file= command by /visiting/ the file: it creates a buffer, copies the contents of the file into the buffer, and then displays the buffer for editing*
+  - *If text is altered, =save-buffer= copies the buffer contents back into the visited file, making it permanent* \rightarrow *Otherwise the altered text exists only inside the Emacs session (and the visited file is unaltered)*
+  - (A new empty buffer created for a non-existing visited file on disk \rightarrow *The file is create the file only on the first invocation of =save-buffer=*)
+
+- (=find-file= uses the minibuffer to read the argument that is given to it \rightarrow =RET= terminate the argument)
+
+- (See Chapter 15 [Files] for more information)
