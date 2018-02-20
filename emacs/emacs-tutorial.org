@@ -360,3 +360,7 @@ Emacs version 25.3.1
 \rightarrow "Once you are through with this tutorial, you should consult the Emacs Info manual as your primary documentation."
 \rightarrow "However, you may want to learn more about Emacs since it has many other useful features."
 \rightarrow "Two features that you may like especially are completion, which saves typing, and dired, which simplifies file handling."
+
+
+- Minibuffer (as well as its completions) is a window you can move to
+- =C--= runs the the command =negative-argument=

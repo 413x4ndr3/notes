@@ -719,6 +719,7 @@ cs:ch-fr  buf      pos line   (major minor)
 
 - (See Chapter 15 [Files], for details)
 
+
 ** Help
 
 | Key     | Command        | Description                                             |
@@ -731,3 +732,18 @@ cs:ch-fr  buf      pos line   (major minor)
 - =describe-functions= *describes existing functions* (and not only commands)
 
 - (See Chapter 7 [Help], for details)
+
+** Blank Lines
+
+| Key       | Command              | Description                                                                                 |
+|-----------+----------------------+---------------------------------------------------------------------------------------------|
+| =C-o=     | =open-line=          | Insert a newline and *leave point before it* (i.e., insert a blank line *after the cursor*) |
+| =C-x C-o= | =delete-blank-lines= | Delete all but one of many consecutive blank lines                                          |
+| =RET=     | =newline=            | Insert a newline, and move to left margin of the new line if it's blank                     |
+
+
+- Consider using =C-o= to *space out* your lines of text instead of typing =RET= + =C-p=
+  - (Prefer spacing out your line *before* inserting your text in order to make it *easier to see what you are typing*)
+
+- Consider passing an /ARG/ to =C-o= to create /n/ lines instead of typing =C-o= multiple times
+
